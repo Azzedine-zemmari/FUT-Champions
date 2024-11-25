@@ -6,7 +6,7 @@
     <title>FUT-Champions</title>
     <link rel="stylesheet" href="./output.css">
 </head>
-<body class="bg-[#2b2a2a]">
+<body >
 <header class="bg-[#040404]  px-4">
     <nav class="flex items-center justify-between">
         <img src="./image/logo-removebg-preview.png" class="w-24" alt="logo">
@@ -23,7 +23,7 @@
         <a href="#" class="font-primary text-textColor pb-2">Contact</a>
     </div>
 </header>
-<main class="flex flex-col ">
+<main class="flex flex-col md:flex-row md:justify-center md:gap-20 ">
 <div id="soccer" class="bg-[url('./image/timothy-tan-PAe2UhGo-S4-unsplash.jpg')] bg-contain  mx-auto bg-no-repeat md:bg-cover h-full md:w-[450px] md:mx-0">
     <div id="attack" class="flex items-end justify-center gap-20 md:justify-between md:gap-0 h-32 md:h-48">
         <div id="lw" class="flex flex-col justify-center ml-6 md:ml-3 mt-4">
@@ -81,6 +81,92 @@
              <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">gk</button>
         </div>
     </div>
+</div>
+<div id="form" class=" border-4 border-[#55CCA2] mt-5 md:mt-0 ">
+    <form>
+        <div class="flex gap-3">
+            <div class="flex flex-col">
+                <label for="name" class="text-[#404040] font-bold" >name:</label>
+                <input type="text" id="name" class="w-40 input  text-white">
+            </div>
+            <div class="flex flex-col">
+                <label for="name" class="text-[#404040] font-bold" >photo:</label>
+                <input type="text" id="photo" class="w-40 input " >
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <div class="flex flex-col">
+                <label for="position" class="text-[#404040] font-bold">position:</label>
+                <select name="position" id="position" class="w-40 input">
+                    <option value="" disabled>choisi votre position</option>
+                    <option value="lw">lw</option>
+                    <option value="st">st</option>
+                    <option value="rw">rw</option>
+                    <option value="cml">cm</option>
+                    <option value="cm">cm</option>
+                    <option value="cmr">cm</option>
+                    <option value="lb">lb</option>
+                    <option value="cb1">cb1</option>
+                    <option value="cb2">cb2</option>
+                    <option value="rb">rb</option>
+                    <option value="gk">gk</option>
+                </select>
+            </div>
+            <div class="flex flex-col">
+                <label for="nationality" class="text-[#404040] font-bold">nationality:</label>
+                <input type="text" id="nationality" class="w-40 input ">
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <div class="flex flex-col">
+                <label for="flag" class="text-[#404040] font-bold">flag:</label>
+                <input type="text" id="flag" class="w-40 input ">
+            </div>
+            <div class="flex flex-col">
+                <label for="club" class="text-[#404040] font-bold">club:</label>
+                <input type="text" id="club" class="w-40 input ">
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <div class="flex flex-col">
+                <label for="logo" class="text-[#404040] font-bold">logo:</label>
+                <input type="text" id="lodo" class="input ">
+            </div>
+            <div class="flex flex-col">
+                <label for="rating" class="text-[#404040] font-bold">rating</label>
+                <input type="text" id="rating" class="w-24 input ">
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <div class="flex flex-col">
+                <label for="pacing" class="text-[#404040] font-bold">pacing:</label>
+                <input type="text" id="pacing" class="w-24 input ">
+            </div>
+            <div class="flex flex-col">
+                <label for="shoting" class="text-[#404040] font-bold">shoting:</label>
+                <input type="text" id="shoting" class="w-24 input ">
+            </div>
+            <div class="flex flex-col">
+                <label for="passing" class="text-[#404040] font-bold">passing:</label>
+                <input type="text" id="passing" class="w-24 input text-white">
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <div class="flex flex-col">
+                <label for="dribbling" class="text-[#404040] font-bold">dribbling:</label>
+                <input type="text" id="dribbling" class="w-24 input ">
+            </div>
+            <div class="flex flex-col">
+                <label for="defending" class="text-[#404040] font-bold">defending:</label>
+                <input type="text" id="defending" class="w-24 input ">
+            </div>
+            <div class="flex flex-col">
+                <label for="physical" class="text-[#404040] font-bold">physical:</label>
+                <input type="text" id="physical" class="w-24 input ">
+            </div>
+        </div>
+        <button>Submit</button>
+    </form>
 </div>
 </main>
 <script src="./script.js"></script>
