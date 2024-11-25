@@ -6,8 +6,8 @@
     <title>FUT-Champions</title>
     <link rel="stylesheet" href="./output.css">
 </head>
-<body>
-<header class="bg-[#040404] py-2 px-4">
+<body class="bg-[#2b2a2a]">
+<header class="bg-[#040404]  px-4">
     <nav class="flex items-center justify-between">
         <img src="./image/logo-removebg-preview.png" class="w-24" alt="logo">
         <div class="hidden md:flex gap-5 items-center">
@@ -15,7 +15,7 @@
             <a href="#" class="font-primary text-textColor">About</a>
             <a href="#" class="font-primary text-textColor">Contact</a>
         </div>
-        <img id="menu" src="./image/burger-simple-svgrepo-com.svg" class="w-8 h-8 md:hidden" alt="">
+        <img id="menu" src="./image/burger-simple-svgrepo-com.svg" class="w-6 h-6 md:hidden" alt="">
     </nav>
     <div id="phoneNav" class="hidden flex-col gap-5 justify-center pt-5 pl-6  md:hidden">
         <a href="./index.html" class="font-primary text-textColor ">Home</a>
@@ -23,6 +23,66 @@
         <a href="#" class="font-primary text-textColor pb-2">Contact</a>
     </div>
 </header>
+<main class="flex flex-col ">
+<div id="soccer" class="bg-[url('./image/timothy-tan-PAe2UhGo-S4-unsplash.jpg')] bg-contain  mx-auto bg-no-repeat md:bg-cover h-full md:w-[450px] md:mx-0">
+    <div id="attack" class="flex items-end justify-center gap-20 md:justify-between md:gap-0 h-32 md:h-48">
+        <div id="lw" class="flex flex-col justify-center ml-6 md:ml-3 mt-4">
+            <!-- card -->
+             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">lw</button>
+        </div>
+        <div id="st" class="flex flex-col justify-center mb-2  md:mb-5">
+            <!-- card -->
+             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">st</button>
+        </div>
+        <div id="rw" class="flex flex-col justify-center mr-10 md:mr-3 mt-4">
+            <!-- card -->
+             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm">rw</button>
+        </div>
+    </div>
+    <div id="center" class="flex items-end justify-center gap-16 md:gap-24 h-40 md:h-52">
+        <div id="cml" class="flex flex-col justify-center mb-7 ml-5 md:ml-0">
+            <!-- card -->
+             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">cml</button>
+        </div>
+        <div id="cm" class="flex flex-col justify-center ml-3 ">
+            <!-- card -->
+             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">cm</button>
+        </div>
+        <div id="cmr" class="flex flex-col justify-center  mr-10 mb-7 md:mr-0">
+            <!-- card -->
+             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm">cmr</button>
+        </div>
+    </div>
+    <div id="defence" class="flex items-end justify-center gap-10 md:gap-20 h-32">
+        <div id="left" class="flex gap-10">
+            <div id="lb" class="flex flex-col justify-center mb-5 ml-2 md:ml-0">
+                <!-- card -->
+                 <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">lb</button>
+            </div>
+            <div id="cb1" class="flex flex-col justify-center ">
+                <!-- card -->
+                 <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">cb1</button>
+            </div>
+        </div>
+        <div id="right" class="flex gap-10">
+            <div id="cb2" class="flex flex-col justify-center ">
+                <!-- card -->
+                 <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm">cb2</button>
+            </div>
+            <div id="rb" class="flex flex-col justify-center  mr-5 mb-5 md:mr-0 ">
+                <!-- card -->
+                 <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm">rb</button>
+            </div>
+        </div>
+    </div>
+    <div id="goalKeeper" class="flex justify-center items-end h-10">
+        <div id="gk" class="flex flex-col justify-center mr-3 md:mr-0">
+            <!-- card -->
+             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">gk</button>
+        </div>
+    </div>
+</div>
+</main>
 <script src="./script.js"></script>
 </body>
 </html>
