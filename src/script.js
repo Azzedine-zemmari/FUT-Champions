@@ -28,6 +28,12 @@ const PlayerName = document.getElementById("name"),
 const arr = JSON.parse(localStorage.getItem("data")) || []
 let id = arr.length ? arr[arr.length - 1 ].id + 1 : 1
 
+Playerposition.addEventListener("change",()=>{
+    const selectedOption = Playerposition.value
+    if(selectedOption == "gk"){
+        //here hide the other field and show the goalkeeper fields
+    }
+})
 
 function saveData() {
     localStorage.setItem("data", JSON.stringify(arr))
