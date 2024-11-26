@@ -14,6 +14,7 @@
             <a href="./index.html" class="font-primary text-textColor">Home</a>
             <a href="#" class="font-primary text-textColor">About</a>
             <a href="#" class="font-primary text-textColor">Contact</a>
+            <button id="insert" class="bg-[#55CCA2] px-4 py-2">insert</button>
         </div>
         <img id="menu" src="./image/burger-simple-svgrepo-com.svg" class="w-6 h-6 md:hidden" alt="">
     </nav>
@@ -23,66 +24,90 @@
         <a href="#" class="font-primary text-textColor pb-2">Contact</a>
     </div>
 </header>
-<main class="flex flex-col md:flex-row md:justify-center md:gap-20 ">
-<div id="soccer" class="bg-[url('./image/timothy-tan-PAe2UhGo-S4-unsplash.jpg')]  bg-contain  mx-auto bg-no-repeat md:bg-cover h-full md:w-[450px] md:mx-0">
+<main class="flex relative md:justify-center  md:gap-20">
+<div id="soccer" class="bg-[url('./image/timothy-tan-PAe2UhGo-S4-unsplash.jpg')]  bg-contain  mx-auto bg-no-repeat md:bg-cover h-full md:w-[450px]">
     <div id="attack" class="flex items-end justify-center gap-20 md:justify-between md:gap-0 h-32 md:h-48">
-        <div id="lw" class="flex flex-col justify-center items-center ml-6 md:ml-3 mt-4">
+        <div class="flex flex-col justify-center items-center ml-6 md:ml-3 mt-4">
             <!-- card -->
-             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">lw</button>
+             <div id="lw" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-20 md:h-20 bg-no-repeat flex flex-col justify-center items-center ">
+                <select class="w-5 " name="" id="lwPlayer">
+
+                </select>
+             </div>
         </div>
-        <div id="st" class="flex flex-col justify-center mb-2  md:mb-5">
+        <div class="flex flex-col justify-center mb-2  md:mb-5">
             <!-- card -->
-             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">st</button>
+            <div id="st" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-16 md:h-16 bg-no-repeat">
+
+            </div>
         </div>
-        <div id="rw" class="flex flex-col justify-center mr-10 md:mr-3 mt-4">
+        <div class="flex flex-col justify-center mr-10 md:mr-3 mt-4">
             <!-- card -->
-             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm">rw</button>
+            <div id="rw" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-16 md:h-16 bg-no-repeat">
+
+            </div>
         </div>
     </div>
     <div id="center" class="flex items-end justify-center gap-16 md:gap-24 h-40 md:h-52">
-        <div id="cml" class="flex flex-col justify-center mb-7 ml-5 md:ml-0">
+        <div  class="flex flex-col justify-center mb-7 ml-5 md:ml-0">
             <!-- card -->
-             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">cml</button>
+            <div id="cml" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-16 md:h-16 bg-no-repeat">
+
+            </div>
         </div>
-        <div id="cm" class="flex flex-col justify-center ml-3 ">
+        <div  class="flex flex-col justify-center ml-3 ">
             <!-- card -->
-             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">cm</button>
+            <div id="cm" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-16 md:h-16 bg-no-repeat">
+
+            </div>
         </div>
-        <div id="cmr" class="flex flex-col justify-center  mr-10 mb-7 md:mr-0">
+        <div class="flex flex-col justify-center  mr-10 mb-7 md:mr-0">
             <!-- card -->
-             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm">cmr</button>
+            <div id="cmr" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-16 md:h-16 bg-no-repeat">
+
+            </div>        
         </div>
     </div>
     <div id="defence" class="flex items-end justify-center gap-10 md:gap-20 h-32">
         <div id="left" class="flex gap-10">
-            <div id="lb" class="flex flex-col justify-center mb-5 ml-2 md:ml-0">
+            <div  class="flex flex-col justify-center mb-5 ml-2 md:ml-0">
                 <!-- card -->
-                 <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">lb</button>
+                <div id="lb" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-16 md:h-16 bg-no-repeat">
+
+                </div> 
             </div>
-            <div id="cb1" class="flex flex-col justify-center ">
+            <div class="flex flex-col justify-center ">
                 <!-- card -->
-                 <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">cb1</button>
+                <div id="cb1" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-16 md:h-16 bg-no-repeat">
+
+                </div> 
             </div>
         </div>
         <div id="right" class="flex gap-10">
-            <div id="cb2" class="flex flex-col justify-center ">
+            <div class="flex flex-col justify-center ">
                 <!-- card -->
-                 <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm">cb2</button>
+                <div id="cb2" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-16 md:h-16 bg-no-repeat">
+
+                </div> 
             </div>
-            <div id="rb" class="flex flex-col justify-center  mr-5 mb-5 md:mr-0 ">
+            <div class="flex flex-col justify-center  mr-5 mb-5 md:mr-0 ">
                 <!-- card -->
-                 <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm">rb</button>
+                <div id="rb" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-16 md:h-16 bg-no-repeat">
+
+                </div> 
             </div>
         </div>
     </div>
     <div id="goalKeeper" class="flex justify-center items-end h-10">
-        <div id="gk" class="flex flex-col justify-center mr-3 md:mr-0">
+        <div class="flex flex-col justify-center mr-3 md:mr-0">
             <!-- card -->
-             <button class="w-6 h-6 md:w-12 md:h-12 rounded-full bg-slate-700 shadow-sm ">gk</button>
+            <div id="gk" class="bg-[url('./image/badge_gold.webp')] bg-contain w-10 h-10 md:w-16 md:h-16 bg-no-repeat">
+
+            </div> 
         </div>
     </div>
 </div>
-<div id="form" class=" border-4 border-[#55CCA2] mt-5 md:mt-0 ">
+<div id="form" class="hidden z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-4 border-[#55CCA2] mt-5 md:mt-0 bg-white">
     <form>
         <div class="flex gap-3">
             <div class="flex flex-col">
@@ -168,6 +193,12 @@
         <button id="submit">Submit</button>
     </form>
 </div>
+<aside id="larg">
+    <div class="bg-black w-60 h-auto">
+        <h2 class="text-white text-center">All Players</h2>
+        <div id="Playerscontainer" class="flex flex-col gap-4"></div>
+    </div>
+</aside>
 </main>
 <script src="./script.js"></script>
 </body>
