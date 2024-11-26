@@ -87,34 +87,153 @@ function showAllData(){
         });
     }
 }
-// const lwPlayer = document.getElementById("lwPlayer")
-// const lw = document.getElementById("lw")
-// function selectPlayer(){
-//     const players = getData()
-//     players.forEach(player=>{
-//         if(player.position == "lw"){
-//             const opt = document.createElement("option")
-//             opt.setAttribute("value",player.id)
-//             opt.innerText = player.name
-//             lwPlayer.append(opt)
-//         }
-//     })
-//     lwPlayer.addEventListener("change",()=>{
-//         const choosenPlayer = lwPlayer.value
-//         console.log(choosenPlayer)
-//         //get the player data
-//         const data = players.find(obj => obj.id == choosenPlayer)
-//         lwPlayer.classList.add("hidden")
-//         lw.innerHTML = `
-//             <div class="flex flex-col h-5 mb-2">
-//                 <p class="text-xs flex mr-10">${data.pacing}</p>
-//                 <p class="text-xs flex mr-10">${data.position}</p>
-//             </div>
-//             <img class="mr-4 w-6 h-5 mb-2" src="${data.photo}"/>
+const lwPlayer = document.getElementById("lwPlayer")
+const stPlayer = document.getElementById("stPlayer")
+const rwPlayer = document.getElementById("rwPlayer")
+const lw = document.getElementById("lw")
+const st = document.getElementById("st")
+const rw = document.getElementById("rw")
+function createSelect(value,name,container){
+    const opt = document.createElement("option")
+    opt.setAttribute("value",value)
+    opt.innerText =name
+    container.append(opt)
+}
 
-//         `
-//     })
+function selectPlayer(){
+    const players = getData()
+    players.forEach(player=>{
+        if(player.position == "lw"){
+            createSelect(player.id,player.name,lwPlayer)
+        }
+        if(player.position == "st"){
+            createSelect(player.id,player.name,stPlayer)
+        }
+        if(player.position == "rw"){
+            createSelect(player.id,player.name,rwPlayer)
+        }
+    })
+    // function createPlayerCard(data){
+    //     const name = data.name.split(" ")
+    //     const positionSection = document.createElement("div")
+    //     positionSection.classList.add("flex","flex-col","h-5","mr-3")
+    // }
+    lwPlayer.addEventListener("change",()=>{
+        const choosenPlayer = lwPlayer.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        const name = data.name.split(" ")
+        lwPlayer.classList.add("hidden")
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
 
-// }
-// selectPlayer()
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        lw.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        lw.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        lw.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        lw.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        lw.append(createStats("Pac",data.pacing))
+        lw.append(createStats("Sho",data.shooting))
+        lw.append(createStats("Pas",data.passing))
+        lw.append(createStats("Dri",data.driblbling))
+        lw.append(createStats("Def",data.defending))
+        lw.append(createStats("Phy",data.physical))
+    })
+    stPlayer.addEventListener("change",()=>{
+        const choosenPlayer = stPlayer.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        const name = data.name.split(" ")
+        stPlayer.classList.add("hidden")
+        st.innerHTML = `
+            <div class="flex flex-col h-5 mr-3">
+                <p class="text-[12px] flex mr-10 font-bold">${data.pacing}</p>
+                <p class="text-[9px] flex mr-10 font-bold">${data.position}</p>
+            </div>
+            <img class=" flex justify-center w-8 h-8 " src="${data.photo}"/>
+            <p class="text-xs text-center font-bold">${name[0]}</p>
+            <div class="flex justify-center items-center gap-1 mb-1">
+            <img class="w-2 h-2" src="${data.flag}"/>
+            <img class="w-2 h-2" src="${data.logo}"/>
+            </div>
+            <div class="flex gap-[2px] mb-3">
+            <div class="flex flex-col">
+                <p class="text-[6px]">Pac</p>
+                <p class="text-[6px]">${data.pacing}</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-[6px]">Sho</p>
+                <p class="text-[6px]">${data.shooting}</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-[6px]">Pas</p>
+                <p class="text-[6px]">${data.passing}</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-[6px]">Dri</p>
+                <p class="text-[6px]">${data.driblbling}</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-[6px]">Def</p>
+                <p class="text-[6px]">${data.defending}</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-[6px]">Phy</p>
+                <p class="text-[6px]">${data.physical}</p>
+            </div>
+            </div>
+        `
+    })
+
+}
+selectPlayer()
 document.addEventListener("DOMContentLoaded",showAllData)
