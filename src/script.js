@@ -28,6 +28,7 @@ const PlayerName = document.getElementById("name"),
 const arr = JSON.parse(localStorage.getItem("data")) || []
 let id = arr.length ? arr[arr.length - 1 ].id + 1 : 1
 
+
 function saveData() {
     localStorage.setItem("data", JSON.stringify(arr))
 }
@@ -35,6 +36,7 @@ function saveData() {
 function getData(){
     return JSON.parse(localStorage.getItem("data")) || []
 }
+
 function AddPlayer(){
     const playerData = {
         id:id,
@@ -57,7 +59,6 @@ function AddPlayer(){
     saveData()
     id++
 }
-
 Playersubmit.addEventListener("click",(e)=>{
     e.preventDefault()
     AddPlayer()
@@ -90,13 +91,29 @@ function showAllData(){
 const lwPlayer = document.getElementById("lwPlayer")
 const stPlayer = document.getElementById("stPlayer")
 const rwPlayer = document.getElementById("rwPlayer")
+const cmlPlayer = document.getElementById("cmlPlayer")
+const cmPlayer = document.getElementById("cmPlayer")
+const cmrPlayer = document.getElementById("cmrPlayer")
+const lbPlayer = document.getElementById("lbPlayer")
+const cb1Player = document.getElementById("cb1Player")
+const cb2Player = document.getElementById("cb2Player")
+const rbPlayer = document.getElementById("rbPlayer")
+const gkPlayer = document.getElementById("gkPlayer")
 const lw = document.getElementById("lw")
 const st = document.getElementById("st")
 const rw = document.getElementById("rw")
+const cml = document.getElementById("cml")
+const cm = document.getElementById("cm")
+const cmr = document.getElementById("cmr")
+const lb = document.getElementById("lb")
+const cb1 = document.getElementById("cb1")
+const cb2 = document.getElementById("cb2")
+const rb = document.getElementById("rb")
+const gk = document.getElementById("gk")
 function createSelect(value,name,container){
     const opt = document.createElement("option")
     opt.setAttribute("value",value)
-    opt.innerText =name
+    opt.innerText = name
     container.append(opt)
 }
 
@@ -112,12 +129,32 @@ function selectPlayer(){
         if(player.position == "rw"){
             createSelect(player.id,player.name,rwPlayer)
         }
+        if(player.position == "cml"){
+            createSelect(player.id,player.name,cmlPlayer)
+        }
+        if(player.position == "cm"){
+            createSelect(player.id,player.name,cmPlayer)
+        }
+        if(player.position == "cmr"){
+            createSelect(player.id,player.name,cmrPlayer)
+        }
+        if(player.position == "lb"){
+            createSelect(player.id,player.name,lbPlayer)
+        }
+        if(player.position == "cb1"){
+            createSelect(player.id,player.name,cb1Player)
+        }
+        if(player.position == "cb2"){
+            createSelect(player.id,player.name,cb2Player)
+        }
+        if(player.position == "rb"){
+            createSelect(player.id,player.name,rbPlayer)
+        }
+        if(player.position == "gk"){
+            createSelect(player.id,player.name,gkPlayer)
+        }
     })
-    // function createPlayerCard(data){
-    //     const name = data.name.split(" ")
-    //     const positionSection = document.createElement("div")
-    //     positionSection.classList.add("flex","flex-col","h-5","mr-3")
-    // }
+    
     lwPlayer.addEventListener("change",()=>{
         const choosenPlayer = lwPlayer.value
         console.log(choosenPlayer)
@@ -194,46 +231,701 @@ function selectPlayer(){
         const data = players.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         stPlayer.classList.add("hidden")
-        st.innerHTML = `
-            <div class="flex flex-col h-5 mr-3">
-                <p class="text-[12px] flex mr-10 font-bold">${data.pacing}</p>
-                <p class="text-[9px] flex mr-10 font-bold">${data.position}</p>
-            </div>
-            <img class=" flex justify-center w-8 h-8 " src="${data.photo}"/>
-            <p class="text-xs text-center font-bold">${name[0]}</p>
-            <div class="flex justify-center items-center gap-1 mb-1">
-            <img class="w-2 h-2" src="${data.flag}"/>
-            <img class="w-2 h-2" src="${data.logo}"/>
-            </div>
-            <div class="flex gap-[2px] mb-3">
-            <div class="flex flex-col">
-                <p class="text-[6px]">Pac</p>
-                <p class="text-[6px]">${data.pacing}</p>
-            </div>
-            <div class="flex flex-col">
-                <p class="text-[6px]">Sho</p>
-                <p class="text-[6px]">${data.shooting}</p>
-            </div>
-            <div class="flex flex-col">
-                <p class="text-[6px]">Pas</p>
-                <p class="text-[6px]">${data.passing}</p>
-            </div>
-            <div class="flex flex-col">
-                <p class="text-[6px]">Dri</p>
-                <p class="text-[6px]">${data.driblbling}</p>
-            </div>
-            <div class="flex flex-col">
-                <p class="text-[6px]">Def</p>
-                <p class="text-[6px]">${data.defending}</p>
-            </div>
-            <div class="flex flex-col">
-                <p class="text-[6px]">Phy</p>
-                <p class="text-[6px]">${data.physical}</p>
-            </div>
-            </div>
-        `
-    })
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
 
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        st.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        st.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        st.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        st.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        st.append(createStats("Pac",data.pacing))
+        st.append(createStats("Sho",data.shooting))
+        st.append(createStats("Pas",data.passing))
+        st.append(createStats("Dri",data.driblbling))
+        st.append(createStats("Def",data.defending))
+        st.append(createStats("Phy",data.physical))
+    })
+    rwPlayer.addEventListener("change",()=>{
+        const choosenPlayer = rwPlayer.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        const name = data.name.split(" ")
+        rwPlayer.classList.add("hidden")
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
+
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        rw.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        rw.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        rw.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        rw.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        rw.append(createStats("Pac",data.pacing))
+        rw.append(createStats("Sho",data.shooting))
+        rw.append(createStats("Pas",data.passing))
+        rw.append(createStats("Dri",data.driblbling))
+        rw.append(createStats("Def",data.defending))
+        rw.append(createStats("Phy",data.physical))
+    })
+    cmlPlayer.addEventListener("change",()=>{
+        const choosenPlayer = cmlPlayer.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        const name = data.name.split(" ")
+        cmlPlayer.classList.add("hidden")
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
+
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        cml.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        cml.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        cml.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        cml.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        cml.append(createStats("Pac",data.pacing))
+        cml.append(createStats("Sho",data.shooting))
+        cml.append(createStats("Pas",data.passing))
+        cml.append(createStats("Dri",data.driblbling))
+        cml.append(createStats("Def",data.defending))
+        cml.append(createStats("Phy",data.physical))
+
+    })
+    cmPlayer.addEventListener("change",()=>{
+        const choosenPlayer = cmPlayer.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        const name = data.name.split(" ")
+        cmPlayer.classList.add("hidden")
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
+
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        cm.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        cm.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        cm.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        cm.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        cm.append(createStats("Pac",data.pacing))
+        cm.append(createStats("Sho",data.shooting))
+        cm.append(createStats("Pas",data.passing))
+        cm.append(createStats("Dri",data.driblbling))
+        cm.append(createStats("Def",data.defending))
+        cm.append(createStats("Phy",data.physical))
+    })
+    cmrPlayer.addEventListener("change",()=>{
+        const choosenPlayer = cmrPlayer.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        const name = data.name.split(" ")
+        cmrPlayer.classList.add("hidden")
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
+
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        cmr.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        cmr.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        cmr.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        cmr.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        cmr.append(createStats("Pac",data.pacing))
+        cmr.append(createStats("Sho",data.shooting))
+        cmr.append(createStats("Pas",data.passing))
+        cmr.append(createStats("Dri",data.driblbling))
+        cmr.append(createStats("Def",data.defending))
+        cmr.append(createStats("Phy",data.physical))
+    })
+    lbPlayer.addEventListener("change",()=>{
+        const choosenPlayer = lbPlayer.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        const name = data.name.split(" ")
+        lbPlayer.classList.add("hidden")
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
+
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        lb.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        lb.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        lb.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        lb.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        lb.append(createStats("Pac",data.pacing))
+        lb.append(createStats("Sho",data.shooting))
+        lb.append(createStats("Pas",data.passing))
+        lb.append(createStats("Dri",data.driblbling))
+        lb.append(createStats("Def",data.defending))
+        lb.append(createStats("Phy",data.physical))
+    })
+    cb1Player.addEventListener("change",()=>{
+        const choosenPlayer = cb1Player.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        const name = data.name.split(" ")
+        cb1Player.classList.add("hidden")
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
+
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        cb1.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        cb1.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        cb1.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        cb1.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        cb1.append(createStats("Pac",data.pacing))
+        cb1.append(createStats("Sho",data.shooting))
+        cb1.append(createStats("Pas",data.passing))
+        cb1.append(createStats("Dri",data.driblbling))
+        cb1.append(createStats("Def",data.defending))
+        cb1.append(createStats("Phy",data.physical))
+    })
+    cb2Player.addEventListener("change",()=>{
+        const choosenPlayer = cb2Player.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        const name = data.name.split(" ")
+        cb2Player.classList.add("hidden")
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
+
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        cb2.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        cb2.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        cb2.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        cb2.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        cb2.append(createStats("Pac",data.pacing))
+        cb2.append(createStats("Sho",data.shooting))
+        cb2.append(createStats("Pas",data.passing))
+        cb2.append(createStats("Dri",data.driblbling))
+        cb2.append(createStats("Def",data.defending))
+        cb2.append(createStats("Phy",data.physical))
+    })
+    rbPlayer.addEventListener("change",()=>{
+        const choosenPlayer = rbPlayer.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        const name = data.name.split(" ")
+        rbPlayer.classList.add("hidden")
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
+
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        rb.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        rb.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        rb.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        rb.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        rb.append(createStats("Pac",data.pacing))
+        rb.append(createStats("Sho",data.shooting))
+        rb.append(createStats("Pas",data.passing))
+        rb.append(createStats("Dri",data.driblbling))
+        rb.append(createStats("Def",data.defending))
+        rb.append(createStats("Phy",data.physical))
+    })
+    gkPlayer.addEventListener("change",()=>{
+        const choosenPlayer = gkPlayer.value
+        console.log(choosenPlayer)
+        //get the player data
+        const data = players.find(obj => obj.id == choosenPlayer)
+        console.log(data)
+        const name = data.name.split(" ")
+        gkPlayer.classList.add("hidden")
+        const positionSection = document.createElement("div")
+        positionSection.classList.add("flex","flex-col","h-5","mr-3")
+
+        const pacing = document.createElement("p")
+        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.innerText = data.pacing
+        positionSection.append(pacing)
+
+        const position = document.createElement("p")
+        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.innerText = data.position
+        positionSection.append(position)
+        gk.append(positionSection)
+
+        const profile = document.createElement("img")
+        profile.src = data.photo
+        profile.classList.add("flex","justify-center","w-8","h-8")
+        gk.append(profile)
+
+        const Name = document.createElement("p")
+        Name.classList.add("text-xs","text-center","font-bold")
+        Name.innerText = name[0]
+        gk.append(Name)
+
+        const flagSection = document.createElement("div")
+        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+
+        const flag = document.createElement("img")
+        flag.classList.add("w-2","h-2")
+        flag.src = data.flag
+        flagSection.append(flag)
+
+        const TeamLogo = document.createElement("img")
+        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.src = data.logo
+        flagSection.append(TeamLogo)
+        gk.append(flagSection)
+
+        const statuSection = document.createElement("div")
+        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        // function to avoid the duplication
+        function createStats(label,value){
+            const div = document.createElement("div")
+            div.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("p")
+            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.innerText  = label
+            div.append(labelPragraph)
+            const statsParagraph = document.createElement("p")
+            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.innerText = value
+            div.append(statsParagraph)
+            statuSection.append(div)
+            return statuSection
+        }
+        gk.append(createStats("Pac",data.pacing))
+        gk.append(createStats("Sho",data.shooting))
+        gk.append(createStats("Pas",data.passing))
+        gk.append(createStats("Dri",data.driblbling))
+        gk.append(createStats("Def",data.defending))
+        gk.append(createStats("Phy",data.physical))
+    })
 }
 selectPlayer()
+function customizeForm(){
+    if(Playerposition.value == "gk"){
+        Playerpacing.classList.add("hidden"),
+        Playershoting.classList.add("hidden"),
+        Playerpassing.classList.add("hidden"),
+        Playerdribbling.classList.add("hidden"),
+        Playerdefending.classList.add("hidden"),
+        Playerphysical.classList.add("hidden")
+    }
+}
 document.addEventListener("DOMContentLoaded",showAllData)
