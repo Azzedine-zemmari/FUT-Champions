@@ -8,9 +8,9 @@ const insert = document.getElementById("insert")
 const form = document.getElementById("form")
 insert.addEventListener("click",()=>{
     form.classList.toggle("hidden")
-    insert.addEventListener("mouseleave",()=>{
-        form.classList.add("hidden")
-    })
+    // insert.addEventListener("mouseleave",()=>{
+    //     form.classList.add("hidden")
+    // })
 })
 const PlayerName = document.getElementById("name"),
     Playerphoto = document.getElementById("photo"),
@@ -39,11 +39,10 @@ const PlayerName = document.getElementById("name"),
 
 const arr = JSON.parse(localStorage.getItem("data")) || []
 let id = arr.length ? arr[arr.length - 1 ].id + 1 : 1
-
-Playerposition.addEventListener("change",()=>{
-    const selectedOption = Playerposition.value
+function customizeForm(option){
+    const selectedOption = option
     if(selectedOption == "gk"){
-        //here hide the other field and show the goalkeeper fields
+
         Pac.classList.add("hidden")
         Shot.classList.add("hidden")
         Pas.classList.add("hidden")
@@ -136,7 +135,10 @@ Playerposition.addEventListener("change",()=>{
 
         }
     }
-)
+
+Playerposition.addEventListener("change",()=>{
+    customizeForm(Playerposition.value)
+})
 
 function saveData() {
     localStorage.setItem("data", JSON.stringify(arr))
@@ -187,7 +189,32 @@ function Delete(id){
     showAllData()
 }
 function modifier(id){
-
+    form.classList.toggle("hidden")
+    const data = arr
+    const item = data.find(obj =>obj.id == id)
+    customizeForm(item.position)
+    PlayerName.value = item.name
+    Playerphoto.value = item.photo
+    Playerposition.value = item.position
+    Playernationality.value = item.nationnality
+    Playerflag.value = item.flag
+    Playerclub.value = item.club
+    Playerlogo.value = item.logo
+    Playerrating.value = item.rating;
+    Playerpacing.value = item.pacing;
+    Playershoting.value = item.shooting;
+    Playerpassing.value = item.passing;
+    Playerdribbling.value = item.driblbling;
+    Playerdefending.value = item.defending;
+    Playerphysical.value = item.physical;
+    if(item.position == "gk"){
+        document.getElementById("Dvin").value = item.Dvin || "";
+        document.getElementById("Hand").value = item.Hind || "";
+        document.getElementById("Kick").value = item.Kick || "";
+        document.getElementById("ref").value = item.ref || "";
+        document.getElementById("Sp").value = item.Sp || "";
+        document.getElementById("pos").value = item.pos || "";
+    }
 }
 
 const PlayersContainer = document.getElementById("Playerscontainer")
@@ -212,7 +239,7 @@ function showAllData(){
                 Delete(element.id)
             })
             div.querySelector(".edit").addEventListener("click",()=>{
-                console.log("edit")
+                modifier(element.id)
             })
             PlayersContainer.append(div)
         });
