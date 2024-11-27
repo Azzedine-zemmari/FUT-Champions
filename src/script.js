@@ -8,6 +8,9 @@ const insert = document.getElementById("insert")
 const form = document.getElementById("form")
 insert.addEventListener("click",()=>{
     form.classList.toggle("hidden")
+    insert.addEventListener("mouseleave",()=>{
+        form.classList.add("hidden")
+    })
 })
 const PlayerName = document.getElementById("name"),
     Playerphoto = document.getElementById("photo"),
@@ -24,7 +27,7 @@ const PlayerName = document.getElementById("name"),
     Playerdefending = document.getElementById("defending"),
     Playerphysical = document.getElementById("physical"),
     Playersubmit = document.getElementById("submit"),
-    Ratt = document.getElementById("Ratt"),
+    // Ratt = document.getElementById("Ratt"),
     Pac = document.getElementById("Pac"),
     Shot = document.getElementById("Shot"),
     Pas = document.getElementById("Pas"),
@@ -69,7 +72,7 @@ Playerposition.addEventListener("change",()=>{
         }
 
         //add the field for the goal keeper
-        function createStat(label,DivId){
+        function createStat(DivId,label){
             const diving = document.createElement("div")
             diving.id = DivId
             diving.classList.add("flex","flex-col")
@@ -156,7 +159,15 @@ function AddPlayer(){
         passing:Playerpassing.value,
         driblbling:Playerdribbling.value,
         defending:Playerdefending.value,
-        physical:Playerphysical.value
+        physical:Playerphysical.value,
+    }
+    if(Playerposition.value == "gk"){
+        playerData.Dvin= document.getElementById("Dvin") ? document.getElementById("Dvin").value : null
+        playerData.Hind = document.getElementById("Hand") ? document.getElementById("Hand").value : null
+        playerData.Kick = document.getElementById("Kick") ? document.getElementById("Kick").value : null
+        playerData.ref = document.getElementById("ref") ? document.getElementById("ref").value : null
+        playerData.Sp = document.getElementById("Sp") ? document.getElementById("Sp").value : null
+        playerData.pos = document.getElementById("pos") ? document.getElementById("pos").value : null
     }
     arr.push(playerData)
     saveData()
@@ -175,6 +186,9 @@ function Delete(id){
     saveData()
     showAllData()
 }
+function modifier(id){
+
+}
 
 const PlayersContainer = document.getElementById("Playerscontainer")
 function showAllData(){
@@ -188,7 +202,7 @@ function showAllData(){
             <h2 class="text-white text-bold">${element.name}</h2>
             <p class="text-[#55CCA2]">${element.position}</p>
             </div>
-            <img src="./image/pencil-edit-svgrepo-com.svg" class="w-6 h-6"/>
+            <img src="./image/pencil-edit-svgrepo-com.svg" class="edit w-6 h-6"/>
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17" stroke="#d24141" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
 
             `
@@ -196,6 +210,9 @@ function showAllData(){
             div.querySelector("svg").addEventListener("click",()=>{
                 console.log("delete ",element.id)
                 Delete(element.id)
+            })
+            div.querySelector(".edit").addEventListener("click",()=>{
+                console.log("edit")
             })
             PlayersContainer.append(div)
         });
@@ -971,7 +988,7 @@ function selectPlayer(){
 
         const pacing = document.createElement("p")
         pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
-        pacing.innerText = data.pacing
+        pacing.innerText = data.Dvin
         positionSection.append(pacing)
 
         const position = document.createElement("p")
@@ -1010,6 +1027,7 @@ function selectPlayer(){
         function createStats(label,value){
             const div = document.createElement("div")
             div.classList.add("flex","flex-col")
+            div.id = label
             const labelPragraph = document.createElement("p")
             labelPragraph.classList.add("text-[6px]")
             labelPragraph.innerText  = label
@@ -1021,12 +1039,12 @@ function selectPlayer(){
             statuSection.append(div)
             return statuSection
         }
-        gk.append(createStats("Pac",data.pacing))
-        gk.append(createStats("Sho",data.shooting))
-        gk.append(createStats("Pas",data.passing))
-        gk.append(createStats("Dri",data.driblbling))
-        gk.append(createStats("Def",data.defending))
-        gk.append(createStats("Phy",data.physical))
+        gk.append(createStats("Dvin",data.Dvin))
+        gk.append(createStats("Hand",data.Hind))
+        gk.append(createStats("Kick",data.Kick))
+        gk.append(createStats("Sp",data.Sp))
+        gk.append(createStats("Def",data.pos))
+        // gk.append(createStats("Phy",data.physical))
     })
 }
 selectPlayer()
