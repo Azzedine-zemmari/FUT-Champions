@@ -361,6 +361,7 @@ function AddPlayer() {
             alert("validation failed")
             return
         }
+        // i need to add validation for goal keeper fields
     arr.push(playerData)
     saveData()
     id++
