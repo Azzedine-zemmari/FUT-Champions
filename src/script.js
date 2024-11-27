@@ -6,7 +6,7 @@ menu.addEventListener("click", () => {
 })
 const insert = document.getElementById("insert")
 const form = document.getElementById("form")
-insert.addEventListener("click",()=>{
+insert.addEventListener("click", () => {
     form.classList.toggle("hidden")
     // insert.addEventListener("mouseleave",()=>{
     //     form.classList.add("hidden")
@@ -38,10 +38,10 @@ const PlayerName = document.getElementById("name"),
     Section2 = document.getElementById("Section2")
 
 const arr = JSON.parse(localStorage.getItem("data")) || []
-let id = arr.length ? arr[arr.length - 1 ].id + 1 : 1
-function customizeForm(option){
+let id = arr.length ? arr[arr.length - 1].id + 1 : 1
+function customizeForm(option) {
     const selectedOption = option
-    if(selectedOption == "gk"){
+    if (selectedOption == "gk") {
 
         Pac.classList.add("hidden")
         Shot.classList.add("hidden")
@@ -71,72 +71,72 @@ function customizeForm(option){
         }
 
         //add the field for the goal keeper
-        function createStat(DivId,label){
+        function createStat(DivId, label) {
             const diving = document.createElement("div")
             diving.id = DivId
-            diving.classList.add("flex","flex-col")
+            diving.classList.add("flex", "flex-col")
             const labelPragraph = document.createElement("label")
-            labelPragraph.classList.add("text-[#404040]","font-bold")
+            labelPragraph.classList.add("text-[#404040]", "font-bold")
             labelPragraph.innerText = label
             diving.append(labelPragraph)
             const input = document.createElement("input")
-            input.classList.add("w-24","input")
+            input.classList.add("w-24", "input")
             input.type = "number"
-            input.id=label
+            input.id = label
             diving.append(input)
             return diving
         }
-       
-        if(!document.getElementById("Dvin")){
-            Section1.append(createStat("diving","Dvin"))
+
+        if (!document.getElementById("Dvin")) {
+            Section1.append(createStat("diving", "Dvin"))
         }
-        if(!document.getElementById("Hand")){
-            Section1.append(createStat("handling","Hand"))
+        if (!document.getElementById("Hand")) {
+            Section1.append(createStat("handling", "Hand"))
         }
-        if(!document.getElementById("Kick")){
-            Section1.append(createStat("kicking","Kick"))
+        if (!document.getElementById("Kick")) {
+            Section1.append(createStat("kicking", "Kick"))
         }
-        if(!document.getElementById("ref")){
-            Section2.append(createStat("reflexes","ref"))
+        if (!document.getElementById("ref")) {
+            Section2.append(createStat("reflexes", "ref"))
         }
-        if(!document.getElementById("Sp")){
-            Section2.append(createStat("speed","Sp"))
+        if (!document.getElementById("Sp")) {
+            Section2.append(createStat("speed", "Sp"))
         }
-        if(!document.getElementById("pos")){
-            Section2.append(createStat("positioning","pos"))
+        if (!document.getElementById("pos")) {
+            Section2.append(createStat("positioning", "pos"))
         }
 
-        }
-        else{
-            Pac.classList.remove("hidden")
-            Shot.classList.remove("hidden")
-            Pas.classList.remove("hidden")
-            Dri.classList.remove("hidden")
-            Def.classList.remove("hidden")
-            Phy.classList.remove("hidden")
-            if(document.getElementById("Dvin")){
-                document.getElementById("Dvin").classList.add("hidden")
-            }
-            if(document.getElementById("Hand")){
-                document.getElementById("Hand").classList.add("hidden")
-            }
-            if(document.getElementById("Kick")){
-                document.getElementById("Kick").classList.add("hidden")
-            }
-            if(document.getElementById("ref")){
-                document.getElementById("ref").classList.add("hidden")
-            }
-            if(document.getElementById("Sp")){
-                document.getElementById("Sp").classList.add("hidden")
-            }
-            if(document.getElementById("pos")){
-                document.getElementById("pos").classList.add("hidden")
-            }
-
-        }
     }
+    else {
+        Pac.classList.remove("hidden")
+        Shot.classList.remove("hidden")
+        Pas.classList.remove("hidden")
+        Dri.classList.remove("hidden")
+        Def.classList.remove("hidden")
+        Phy.classList.remove("hidden")
+        if (document.getElementById("Dvin")) {
+            document.getElementById("Dvin").classList.add("hidden")
+        }
+        if (document.getElementById("Hand")) {
+            document.getElementById("Hand").classList.add("hidden")
+        }
+        if (document.getElementById("Kick")) {
+            document.getElementById("Kick").classList.add("hidden")
+        }
+        if (document.getElementById("ref")) {
+            document.getElementById("ref").classList.add("hidden")
+        }
+        if (document.getElementById("Sp")) {
+            document.getElementById("Sp").classList.add("hidden")
+        }
+        if (document.getElementById("pos")) {
+            document.getElementById("pos").classList.add("hidden")
+        }
 
-Playerposition.addEventListener("change",()=>{
+    }
+}
+
+Playerposition.addEventListener("change", () => {
     customizeForm(Playerposition.value)
 })
 
@@ -145,53 +145,245 @@ function saveData() {
 }
 
 
-function AddPlayer(){
-    const playerData = {
-        id:id,
-        name : PlayerName.value,
-        photo : Playerphoto.value,
-        position : Playerposition.value,
-        nationnality:Playernationality.value,
-        flag:Playerflag.value,
-        club : Playerclub.value,
-        logo:Playerlogo.value,
-        rating:Playerrating.value,
-        pacing:Playerpacing.value,
-        shooting:Playershoting.value,
-        passing:Playerpassing.value,
-        driblbling:Playerdribbling.value,
-        defending:Playerdefending.value,
-        physical:Playerphysical.value,
+    const nameError = document.getElementById("nameError");
+    const photoError = document.getElementById("photoError");
+    const positionError = document.getElementById("positionError");
+    const nationalityError = document.getElementById("nationalityError");
+    const flagError = document.getElementById("flagError");
+    const clubError = document.getElementById("clubError");
+    const logoError = document.getElementById("logoError");
+    const ratingError = document.getElementById("ratingError");
+    const pacingError = document.getElementById("pacingError");
+    const shootingError = document.getElementById("shootingError");
+    const passingError = document.getElementById("passingError");
+    const dribblingError = document.getElementById("dribblingError");
+    const defendError = document.getElementById("defendError");
+    const physicalError = document.getElementById("physicalError");
+    function emptyErrorMessage(){
+        nameError.innerHTML = "";
+    photoError.innerHTML = "";
+    positionError.innerHTML = "";
+    nationalityError.innerHTML = "";
+    flagError.innerHTML = "";
+    clubError.innerHTML = "";
+    logoError.innerHTML = "";
+    ratingError.innerHTML = "";
+    pacingError.innerHTML = "";
+    shootingError.innerHTML = "";
+    passingError.innerHTML = "";
+    dribblingError.innerHTML = "";
+    defendError.innerHTML = "";
+    physicalError.innerHTML = "";
     }
-    if(Playerposition.value == "gk"){
-        playerData.Dvin= document.getElementById("Dvin") ? document.getElementById("Dvin").value : null
+
+function validation(name, photo, position, nationality, flag, club, logo, rating, pacing, shooting, passing, dribbling, defend, physical) {
+    let isValid = true;
+    emptyErrorMessage()
+   
+    if (name === "") {
+        nameError.innerText = "Veuillez entrer un nom";
+        isValid = false;
+    } else {
+        nameError.innerText = ""; 
+    }
+
+   
+    if (photo === "") {
+        photoError.innerText = "Veuillez entrer une photo";
+        isValid = false;
+    } else {
+        photoError.innerText = ""; 
+    }
+
+    
+    if (position === "") {
+        positionError.innerText = "Veuillez choisir une position";
+        isValid = false;
+    } else {
+        positionError.innerText = ""; 
+    }
+
+    
+    if (nationality === "") {
+        nationalityError.innerText = "Veuillez entrer la nationalité";
+        isValid = false;
+    } else {
+        nationalityError.innerText = ""; 
+    }
+
+    
+    if (flag === "") {
+        flagError.innerText = "Veuillez entrer un drapeau";
+        isValid = false;
+    } else {
+        flagError.innerText = ""; 
+    }
+
+   
+    if (club === "") {
+        clubError.innerText = "Veuillez entrer un club";
+        isValid = false;
+    } else {
+        clubError.innerText = ""; 
+    }
+
+
+    if (logo === "") {
+        logoError.innerText = "Veuillez entrer un logo";
+        isValid = false;
+    } else {
+        logoError.innerText = ""; 
+    }
+
+    if (rating === "") {
+        ratingError.innerText = "Veuillez entrer une note";
+        isValid = false;
+    } 
+    else if(rating < 0 || rating > 100){
+        ratingError.innerText = "Veuillez entrer une note entre 0 et 100"
+        isValid = false
+    }
+    else {
+        ratingError.innerText = ""; 
+    }
+
+
+    if (pacing === "") {
+        pacingError.innerText = "Veuillez entrer un nombre valide pour la vitesse";
+        isValid = false;
+    } 
+    else if(pacing < 0 || pacing > 100){
+        pacingError.innerText = "Veuillez entrer un nombre entre 0 et 100";
+        isValid = false;
+    }
+    else {
+        pacingError.innerText = ""; 
+    }
+
+
+    if (shooting === "") {
+        shootingError.innerText = "Veuillez entrer un nombre valide pour le tir";
+        isValid = false;
+    } 
+    else if(shooting < 0 || shooting > 100){
+        shootingError.innerText = "Veuillez entrer un nombre entre 0 et 100";
+        isValid = false;
+    }
+    else {
+        shootingError.innerText = ""; 
+    }
+
+
+    if (passing === "") {
+        passingError.innerText = "Veuillez entrer un nombre valide pour la passe";
+        isValid = false;
+    } 
+    else if(passing < 0 || passing > 100){
+        passingError.innerText = "Veuillez entrer un nombre entre 0 et 100";
+        isValid = false;
+    }
+    else {
+        passingError.innerText = ""; 
+    }
+
+    if (dribbling === "") {
+        dribblingError.innerText = "Veuillez entrer un nombre valide pour le dribble";
+        isValid = false;
+    } 
+    else if(dribbling < 0 || dribbling > 100){
+        dribblingError.innerText = "Veuillez entrer un nombre entre 0 et 100";
+        isValid = false;
+    }
+    else {
+        dribblingError.innerText = ""; 
+    }
+
+    if (defend === "" && defend < 0 && defend >= 100) {
+        defendError.innerText = "Veuillez entrer un nombre valide pour la défense";
+        isValid = false;
+    } else {
+        defendError.innerText = ""; 
+    }
+
+    if (physical === "" && physical < 0 && physical >= 100) {
+        physicalError.innerText = "Veuillez entrer un nombre valide pour le physique";
+        isValid = false;
+    } else {
+        physicalError.innerText = ""; 
+    }
+
+    return isValid; // Return the form is valid or not
+}
+
+
+function AddPlayer() {
+
+    const playerData = {
+        id: id,
+        name: PlayerName.value,
+        photo: Playerphoto.value,
+        position: Playerposition.value,
+        nationnality: Playernationality.value,
+        flag: Playerflag.value,
+        club: Playerclub.value,
+        logo: Playerlogo.value,
+        rating: Playerrating.value,
+        pacing: Playerpacing.value,
+        shooting: Playershoting.value,
+        passing: Playerpassing.value,
+        driblbling: Playerdribbling.value,
+        defending: Playerdefending.value,
+        physical: Playerphysical.value,
+    }
+    if (Playerposition.value == "gk") {
+        playerData.Dvin = document.getElementById("Dvin") ? document.getElementById("Dvin").value : null
         playerData.Hind = document.getElementById("Hand") ? document.getElementById("Hand").value : null
         playerData.Kick = document.getElementById("Kick") ? document.getElementById("Kick").value : null
         playerData.ref = document.getElementById("ref") ? document.getElementById("ref").value : null
         playerData.Sp = document.getElementById("Sp") ? document.getElementById("Sp").value : null
         playerData.pos = document.getElementById("pos") ? document.getElementById("pos").value : null
     }
+    const isValid = validation( playerData.name,
+        playerData.photo,
+        playerData.position,
+        playerData.nationnality,
+        playerData.flag,
+        playerData.club,
+        playerData.logo,
+        playerData.rating,
+        playerData.pacing,
+        playerData.shooting,
+        playerData.passing,
+        playerData.driblbling,
+        playerData.defending,
+        playerData.physical)
+        if(!isValid){
+            alert("validation failed")
+            return
+        }
     arr.push(playerData)
     saveData()
     id++
 }
-Playersubmit.addEventListener("click",(e)=>{
+Playersubmit.addEventListener("click", (e) => {
     e.preventDefault()
     AddPlayer()
     showAllData()
 })
-function Delete(id){
-    const result = arr.findIndex(obj=>obj.id == id)
-    console.log("this is the deleted card",result)
-    arr.splice(result,1)
+function Delete(id) {
+    const result = arr.findIndex(obj => obj.id == id)
+    console.log("this is the deleted card", result)
+    arr.splice(result, 1)
 
     saveData()
     showAllData()
 }
-function modifier(id){
+function modifier(id) {
     form.classList.toggle("hidden")
+    emptyErrorMessage()
+
     const data = arr
-    const item = data.find(obj =>obj.id == id)
+    const item = data.find(obj => obj.id == id)
     customizeForm(item.position)
     PlayerName.value = item.name
     Playerphoto.value = item.photo
@@ -207,7 +399,7 @@ function modifier(id){
     Playerdribbling.value = item.driblbling;
     Playerdefending.value = item.defending;
     Playerphysical.value = item.physical;
-    if(item.position == "gk"){
+    if (item.position == "gk") {
         document.getElementById("Dvin").value = item.Dvin || "";
         document.getElementById("Hand").value = item.Hind || "";
         document.getElementById("Kick").value = item.Kick || "";
@@ -216,7 +408,7 @@ function modifier(id){
         document.getElementById("pos").value = item.pos || "";
     }
     //to get the new changes in the inputs
-    Playersubmit.addEventListener("click",(e)=>{
+    Playersubmit.addEventListener("click", (e) => {
         e.preventDefault()
         item.name = PlayerName.value
         item.photo = Playerphoto.value;
@@ -232,7 +424,7 @@ function modifier(id){
         item.driblbling = Playerdribbling.value;
         item.defending = Playerdefending.value;
         item.physical = Playerphysical.value;
-         // If the player is a goalkeeper, update the additional fields
+        // If the player is a goalkeeper, update the additional fields
         if (item.position == "gk") {
             item.Dvin = document.getElementById("Dvin").value || "";
             item.Hand = document.getElementById("Hand").value || "";
@@ -247,9 +439,9 @@ function modifier(id){
 }
 
 const PlayersContainer = document.getElementById("Playerscontainer")
-function showAllData(){
+function showAllData() {
     PlayersContainer.innerHTML = ""
-    if(arr.length){
+    if (arr.length) {
         arr.forEach(element => {
             const div = document.createElement("div")
             div.innerHTML = `
@@ -262,12 +454,12 @@ function showAllData(){
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17" stroke="#d24141" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
 
             `
-            div.classList.add("flex","gap-3","items-center")
-            div.querySelector("svg").addEventListener("click",()=>{
-                console.log("delete ",element.id)
+            div.classList.add("flex", "gap-3", "items-center")
+            div.querySelector("svg").addEventListener("click", () => {
+                console.log("delete ", element.id)
                 Delete(element.id)
             })
-            div.querySelector(".edit").addEventListener("click",()=>{
+            div.querySelector(".edit").addEventListener("click", () => {
                 modifier(element.id)
             })
             PlayersContainer.append(div)
@@ -296,50 +488,50 @@ const cb1 = document.getElementById("cb1")
 const cb2 = document.getElementById("cb2")
 const rb = document.getElementById("rb")
 const gk = document.getElementById("gk")
-function createSelect(value,name,container){
+function createSelect(value, name, container) {
     const opt = document.createElement("option")
-    opt.setAttribute("value",value)
+    opt.setAttribute("value", value)
     opt.innerText = name
     container.append(opt)
 }
 
-function selectPlayer(){
-    arr.forEach(player=>{
-        if(player.position == "lw"){
-            createSelect(player.id,player.name,lwPlayer)
+function selectPlayer() {
+    arr.forEach(player => {
+        if (player.position == "lw") {
+            createSelect(player.id, player.name, lwPlayer)
         }
-        if(player.position == "st"){
-            createSelect(player.id,player.name,stPlayer)
+        if (player.position == "st") {
+            createSelect(player.id, player.name, stPlayer)
         }
-        if(player.position == "rw"){
-            createSelect(player.id,player.name,rwPlayer)
+        if (player.position == "rw") {
+            createSelect(player.id, player.name, rwPlayer)
         }
-        if(player.position == "cml"){
-            createSelect(player.id,player.name,cmlPlayer)
+        if (player.position == "cml") {
+            createSelect(player.id, player.name, cmlPlayer)
         }
-        if(player.position == "cm"){
-            createSelect(player.id,player.name,cmPlayer)
+        if (player.position == "cm") {
+            createSelect(player.id, player.name, cmPlayer)
         }
-        if(player.position == "cmr"){
-            createSelect(player.id,player.name,cmrPlayer)
+        if (player.position == "cmr") {
+            createSelect(player.id, player.name, cmrPlayer)
         }
-        if(player.position == "lb"){
-            createSelect(player.id,player.name,lbPlayer)
+        if (player.position == "lb") {
+            createSelect(player.id, player.name, lbPlayer)
         }
-        if(player.position == "cb1"){
-            createSelect(player.id,player.name,cb1Player)
+        if (player.position == "cb1") {
+            createSelect(player.id, player.name, cb1Player)
         }
-        if(player.position == "cb2"){
-            createSelect(player.id,player.name,cb2Player)
+        if (player.position == "cb2") {
+            createSelect(player.id, player.name, cb2Player)
         }
-        if(player.position == "rb"){
-            createSelect(player.id,player.name,rbPlayer)
+        if (player.position == "rb") {
+            createSelect(player.id, player.name, rbPlayer)
         }
-        if(player.position == "gk"){
-            createSelect(player.id,player.name,gkPlayer)
+        if (player.position == "gk") {
+            createSelect(player.id, player.name, gkPlayer)
         }
     })
-    function loadchoosenPlayerData(select,container,selectId){
+    function loadchoosenPlayerData(select, container, selectId) {
         const choosenPlayer = select
         console.log(choosenPlayer)
         //get the player data
@@ -347,52 +539,52 @@ function selectPlayer(){
         const name = data.name.split(" ")
         selectId.classList.add("hidden")
         const positionSection = document.createElement("div")
-        positionSection.classList.add("flex","flex-col","h-5","mr-3")
+        positionSection.classList.add("flex", "flex-col", "h-5", "mr-3")
 
         const pacing = document.createElement("p")
-        pacing.classList.add("text-[12px]","flex","mr-10","font-bold")
+        pacing.classList.add("text-[12px]", "flex", "mr-10", "font-bold")
         pacing.innerText = data.pacing
         positionSection.append(pacing)
 
         const position = document.createElement("p")
-        position.classList.add("text-[9px]","flex","mr-10","font-bold")
+        position.classList.add("text-[9px]", "flex", "mr-10", "font-bold")
         position.innerText = data.position
         positionSection.append(position)
         container.append(positionSection)
 
         const profile = document.createElement("img")
         profile.src = data.photo
-        profile.classList.add("flex","justify-center","w-8","h-8")
+        profile.classList.add("flex", "justify-center", "w-8", "h-8")
         container.append(profile)
 
         const Name = document.createElement("p")
-        Name.classList.add("text-xs","text-center","font-bold")
+        Name.classList.add("text-xs", "text-center", "font-bold")
         Name.innerText = name[0]
         container.append(Name)
 
         const flagSection = document.createElement("div")
-        flagSection.classList.add("flex","justify-center","items-center","gap-1","mb-1")
+        flagSection.classList.add("flex", "justify-center", "items-center", "gap-1", "mb-1")
 
         const flag = document.createElement("img")
-        flag.classList.add("w-2","h-2")
+        flag.classList.add("w-2", "h-2")
         flag.src = data.flag
         flagSection.append(flag)
 
         const TeamLogo = document.createElement("img")
-        TeamLogo.classList.add("w-2","h-2")
+        TeamLogo.classList.add("w-2", "h-2")
         TeamLogo.src = data.logo
         flagSection.append(TeamLogo)
         container.append(flagSection)
 
         const statuSection = document.createElement("div")
-        statuSection.classList.add("flex","gap-[2px]","mb-3")
+        statuSection.classList.add("flex", "gap-[2px]", "mb-3")
         // function to avoid the duplication
-        function createStats(label,value){
+        function createStats(label, value) {
             const div = document.createElement("div")
-            div.classList.add("flex","flex-col")
+            div.classList.add("flex", "flex-col")
             const labelPragraph = document.createElement("p")
             labelPragraph.classList.add("text-[6px]")
-            labelPragraph.innerText  = label
+            labelPragraph.innerText = label
             div.append(labelPragraph)
             const statsParagraph = document.createElement("p")
             statsParagraph.classList.add("text-[6px]")
@@ -401,56 +593,56 @@ function selectPlayer(){
             statuSection.append(div)
             return statuSection
         }
-        if(data.position !== "gk"){
-            container.append(createStats("Pac",data.pacing))
-            container.append(createStats("Sho",data.shooting))
-            container.append(createStats("Pas",data.passing))
-            container.append(createStats("Dri",data.driblbling))
-            container.append(createStats("Def",data.defending))
-            container.append(createStats("Phy",data.physical))
+        if (data.position !== "gk") {
+            container.append(createStats("Pac", data.pacing))
+            container.append(createStats("Sho", data.shooting))
+            container.append(createStats("Pas", data.passing))
+            container.append(createStats("Dri", data.driblbling))
+            container.append(createStats("Def", data.defending))
+            container.append(createStats("Phy", data.physical))
         }
-        if(data.position == "gk"){
-            container.append(createStats("Dvin",data.Dvin))
-        container.append(createStats("Hand",data.Hind))
-        container.append(createStats("Kick",data.Kick))
-        container.append(createStats("Sp",data.Sp))
-        container.append(createStats("Def",data.pos))
-        }        
+        if (data.position == "gk") {
+            container.append(createStats("Dvin", data.Dvin))
+            container.append(createStats("Hand", data.Hind))
+            container.append(createStats("Kick", data.Kick))
+            container.append(createStats("Sp", data.Sp))
+            container.append(createStats("Def", data.pos))
+        }
     }
-    lwPlayer.addEventListener("change",()=>{
-        loadchoosenPlayerData(lwPlayer.value,lw,lwPlayer)
+    lwPlayer.addEventListener("change", () => {
+        loadchoosenPlayerData(lwPlayer.value, lw, lwPlayer)
     })
-    stPlayer.addEventListener("change",()=>{
-     loadchoosenPlayerData(stPlayer.value,st,stPlayer)
+    stPlayer.addEventListener("change", () => {
+        loadchoosenPlayerData(stPlayer.value, st, stPlayer)
     })
-    rwPlayer.addEventListener("change",()=>{
-       loadchoosenPlayerData(rwPlayer.value,rw,rwPlayer)
+    rwPlayer.addEventListener("change", () => {
+        loadchoosenPlayerData(rwPlayer.value, rw, rwPlayer)
     })
-    cmlPlayer.addEventListener("change",()=>{
-       loadchoosenPlayerData(cmlPlayer.value,cml,cmlPlayer)
+    cmlPlayer.addEventListener("change", () => {
+        loadchoosenPlayerData(cmlPlayer.value, cml, cmlPlayer)
     })
-    cmPlayer.addEventListener("change",()=>{
-        loadchoosenPlayerData(cmPlayer.value,cm,cmPlayer)
+    cmPlayer.addEventListener("change", () => {
+        loadchoosenPlayerData(cmPlayer.value, cm, cmPlayer)
     })
-    cmrPlayer.addEventListener("change",()=>{
-       loadchoosenPlayerData(cmrPlayer.value,cmr,cmrPlayer)
+    cmrPlayer.addEventListener("change", () => {
+        loadchoosenPlayerData(cmrPlayer.value, cmr, cmrPlayer)
     })
-    lbPlayer.addEventListener("change",()=>{
-        loadchoosenPlayerData(lbPlayer.value,lb,lbPlayer)    
+    lbPlayer.addEventListener("change", () => {
+        loadchoosenPlayerData(lbPlayer.value, lb, lbPlayer)
     })
-    cb1Player.addEventListener("change",()=>{
-       loadchoosenPlayerData(cb1Player.value,cb1,cb1Player)
+    cb1Player.addEventListener("change", () => {
+        loadchoosenPlayerData(cb1Player.value, cb1, cb1Player)
     })
-    cb2Player.addEventListener("change",()=>{
-        loadchoosenPlayerData(cb2Player,cb2,cb2Player)
+    cb2Player.addEventListener("change", () => {
+        loadchoosenPlayerData(cb2Player, cb2, cb2Player)
     })
-    rbPlayer.addEventListener("change",()=>{
-       loadchoosenPlayerData(rbPlayer.value,rb,rbPlayer)
+    rbPlayer.addEventListener("change", () => {
+        loadchoosenPlayerData(rbPlayer.value, rb, rbPlayer)
     })
-    gkPlayer.addEventListener("change",()=>{
-        loadchoosenPlayerData(gkPlayer.value,gk,gkPlayer)
+    gkPlayer.addEventListener("change", () => {
+        loadchoosenPlayerData(gkPlayer.value, gk, gkPlayer)
     })
 }
 selectPlayer()
 
-document.addEventListener("DOMContentLoaded",showAllData)
+document.addEventListener("DOMContentLoaded", showAllData)
