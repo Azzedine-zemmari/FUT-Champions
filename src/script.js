@@ -215,6 +215,35 @@ function modifier(id){
         document.getElementById("Sp").value = item.Sp || "";
         document.getElementById("pos").value = item.pos || "";
     }
+    //to get the new changes in the inputs
+    Playersubmit.addEventListener("click",(e)=>{
+        e.preventDefault()
+        item.name = PlayerName.value
+        item.photo = Playerphoto.value;
+        item.position = Playerposition.value;
+        item.nationnality = Playernationality.value;
+        item.flag = Playerflag.value;
+        item.club = Playerclub.value;
+        item.logo = Playerlogo.value;
+        item.rating = Playerrating.value;
+        item.pacing = Playerpacing.value;
+        item.shooting = Playershoting.value;
+        item.passing = Playerpassing.value;
+        item.driblbling = Playerdribbling.value;
+        item.defending = Playerdefending.value;
+        item.physical = Playerphysical.value;
+         // If the player is a goalkeeper, update the additional fields
+        if (item.position == "gk") {
+            item.Dvin = document.getElementById("Dvin").value || "";
+            item.Hand = document.getElementById("Hand").value || "";
+            item.Kick = document.getElementById("Kick").value || "";
+            item.ref = document.getElementById("ref").value || "";
+            item.Sp = document.getElementById("Sp").value || "";
+            item.pos = document.getElementById("pos").value || "";
+        }
+        saveData()
+        showAllData()
+    })
 }
 
 const PlayersContainer = document.getElementById("Playerscontainer")
