@@ -23,7 +23,16 @@ const PlayerName = document.getElementById("name"),
     Playerdribbling = document.getElementById("dribbling"),
     Playerdefending = document.getElementById("defending"),
     Playerphysical = document.getElementById("physical"),
-    Playersubmit = document.getElementById("submit")
+    Playersubmit = document.getElementById("submit"),
+    Ratt = document.getElementById("Ratt"),
+    Pac = document.getElementById("Pac"),
+    Shot = document.getElementById("Shot"),
+    Pas = document.getElementById("Pas"),
+    Dri = document.getElementById("Dri"),
+    Def = document.getElementById("Def"),
+    Phy = document.getElementById("Phy"),
+    Section1 = document.getElementById("Section1"),
+    Section2 = document.getElementById("Section2")
 
 const arr = JSON.parse(localStorage.getItem("data")) || []
 let id = arr.length ? arr[arr.length - 1 ].id + 1 : 1
@@ -32,16 +41,104 @@ Playerposition.addEventListener("change",()=>{
     const selectedOption = Playerposition.value
     if(selectedOption == "gk"){
         //here hide the other field and show the goalkeeper fields
+        Pac.classList.add("hidden")
+        Shot.classList.add("hidden")
+        Pas.classList.add("hidden")
+        Dri.classList.add("hidden")
+        Def.classList.add("hidden")
+        Phy.classList.add("hidden")
+
+        // Remove the the goalkeeper fields if they exist
+        if (document.getElementById("Dvin")) {
+            document.getElementById("Dvin").classList.remove("hidden");
+        }
+        if (document.getElementById("Hand")) {
+            document.getElementById("Hand").classList.remove("hidden");
+        }
+        if (document.getElementById("Kick")) {
+            document.getElementById("Kick").classList.remove("hidden");
+        }
+        if (document.getElementById("ref")) {
+            document.getElementById("ref").classList.remove("hidden");
+        }
+        if (document.getElementById("Sp")) {
+            document.getElementById("Sp").classList.remove("hidden");
+        }
+        if (document.getElementById("pos")) {
+            document.getElementById("pos").classList.remove("hidden");
+        }
+
+        //add the field for the goal keeper
+        function createStat(label,DivId){
+            const diving = document.createElement("div")
+            diving.id = DivId
+            diving.classList.add("flex","flex-col")
+            const labelPragraph = document.createElement("label")
+            labelPragraph.classList.add("text-[#404040]","font-bold")
+            labelPragraph.innerText = label
+            diving.append(labelPragraph)
+            const input = document.createElement("input")
+            input.classList.add("w-24","input")
+            input.type = "number"
+            input.id=label
+            diving.append(input)
+            return diving
+        }
+       
+        if(!document.getElementById("Dvin")){
+            Section1.append(createStat("diving","Dvin"))
+        }
+        if(!document.getElementById("Hand")){
+            Section1.append(createStat("handling","Hand"))
+        }
+        if(!document.getElementById("Kick")){
+            Section1.append(createStat("kicking","Kick"))
+        }
+        if(!document.getElementById("ref")){
+            Section2.append(createStat("reflexes","ref"))
+        }
+        if(!document.getElementById("Sp")){
+            Section2.append(createStat("speed","Sp"))
+        }
+        if(!document.getElementById("pos")){
+            Section2.append(createStat("positioning","pos"))
+        }
+
+        }
+        else{
+            Pac.classList.remove("hidden")
+            Shot.classList.remove("hidden")
+            Pas.classList.remove("hidden")
+            Dri.classList.remove("hidden")
+            Def.classList.remove("hidden")
+            Phy.classList.remove("hidden")
+            if(document.getElementById("Dvin")){
+                document.getElementById("Dvin").classList.add("hidden")
+            }
+            if(document.getElementById("Hand")){
+                document.getElementById("Hand").classList.add("hidden")
+            }
+            if(document.getElementById("Kick")){
+                document.getElementById("Kick").classList.add("hidden")
+            }
+            if(document.getElementById("ref")){
+                document.getElementById("ref").classList.add("hidden")
+            }
+            if(document.getElementById("Sp")){
+                document.getElementById("Sp").classList.add("hidden")
+            }
+            if(document.getElementById("pos")){
+                document.getElementById("pos").classList.add("hidden")
+            }
+
+        }
     }
-})
+)
 
 function saveData() {
     localStorage.setItem("data", JSON.stringify(arr))
 }
 
-function getData(){
-    return JSON.parse(localStorage.getItem("data")) || []
-}
 
 function AddPlayer(){
     const playerData = {
@@ -70,14 +167,20 @@ Playersubmit.addEventListener("click",(e)=>{
     AddPlayer()
     showAllData()
 })
+function Delete(id){
+    const result = arr.findIndex(obj=>obj.id == id)
+    console.log("this is the deleted card",result)
+    arr.splice(result,1)
+
+    saveData()
+    showAllData()
+}
 
 const PlayersContainer = document.getElementById("Playerscontainer")
 function showAllData(){
-    const info = getData()
     PlayersContainer.innerHTML = ""
-    console.log(info)
-    if(info.length){
-        info.forEach(element => {
+    if(arr.length){
+        arr.forEach(element => {
             const div = document.createElement("div")
             div.innerHTML = `
             <img class="w-16 h-16" src="${element.photo}"/>
@@ -90,6 +193,10 @@ function showAllData(){
 
             `
             div.classList.add("flex","gap-3","items-center")
+            div.querySelector("svg").addEventListener("click",()=>{
+                console.log("delete ",element.id)
+                Delete(element.id)
+            })
             PlayersContainer.append(div)
         });
     }
@@ -124,8 +231,7 @@ function createSelect(value,name,container){
 }
 
 function selectPlayer(){
-    const players = getData()
-    players.forEach(player=>{
+    arr.forEach(player=>{
         if(player.position == "lw"){
             createSelect(player.id,player.name,lwPlayer)
         }
@@ -165,7 +271,7 @@ function selectPlayer(){
         const choosenPlayer = lwPlayer.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         lwPlayer.classList.add("hidden")
         const positionSection = document.createElement("div")
@@ -234,7 +340,7 @@ function selectPlayer(){
         const choosenPlayer = stPlayer.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data =arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         stPlayer.classList.add("hidden")
         const positionSection = document.createElement("div")
@@ -303,7 +409,7 @@ function selectPlayer(){
         const choosenPlayer = rwPlayer.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         rwPlayer.classList.add("hidden")
         const positionSection = document.createElement("div")
@@ -372,7 +478,7 @@ function selectPlayer(){
         const choosenPlayer = cmlPlayer.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         cmlPlayer.classList.add("hidden")
         const positionSection = document.createElement("div")
@@ -442,7 +548,7 @@ function selectPlayer(){
         const choosenPlayer = cmPlayer.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         cmPlayer.classList.add("hidden")
         const positionSection = document.createElement("div")
@@ -511,7 +617,7 @@ function selectPlayer(){
         const choosenPlayer = cmrPlayer.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         cmrPlayer.classList.add("hidden")
         const positionSection = document.createElement("div")
@@ -580,7 +686,7 @@ function selectPlayer(){
         const choosenPlayer = lbPlayer.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         lbPlayer.classList.add("hidden")
         const positionSection = document.createElement("div")
@@ -649,7 +755,7 @@ function selectPlayer(){
         const choosenPlayer = cb1Player.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         cb1Player.classList.add("hidden")
         const positionSection = document.createElement("div")
@@ -718,7 +824,7 @@ function selectPlayer(){
         const choosenPlayer = cb2Player.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         cb2Player.classList.add("hidden")
         const positionSection = document.createElement("div")
@@ -787,7 +893,7 @@ function selectPlayer(){
         const choosenPlayer = rbPlayer.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         rbPlayer.classList.add("hidden")
         const positionSection = document.createElement("div")
@@ -856,7 +962,7 @@ function selectPlayer(){
         const choosenPlayer = gkPlayer.value
         console.log(choosenPlayer)
         //get the player data
-        const data = players.find(obj => obj.id == choosenPlayer)
+        const data = arr.find(obj => obj.id == choosenPlayer)
         console.log(data)
         const name = data.name.split(" ")
         gkPlayer.classList.add("hidden")
@@ -924,14 +1030,5 @@ function selectPlayer(){
     })
 }
 selectPlayer()
-function customizeForm(){
-    if(Playerposition.value == "gk"){
-        Playerpacing.classList.add("hidden"),
-        Playershoting.classList.add("hidden"),
-        Playerpassing.classList.add("hidden"),
-        Playerdribbling.classList.add("hidden"),
-        Playerdefending.classList.add("hidden"),
-        Playerphysical.classList.add("hidden")
-    }
-}
+
 document.addEventListener("DOMContentLoaded",showAllData)
