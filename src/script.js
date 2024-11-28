@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", showAllData)
 const menu = document.getElementById("menu")
 const phoneNav = document.getElementById("phoneNav")
 menu.addEventListener("click", () => {
@@ -372,6 +373,12 @@ function AddPlayer() {
 Playersubmit.addEventListener("click", (e) => {
     e.preventDefault()
     AddPlayer()
+    form.classList.toggle("hidden")
+    document.getElementById("modalSuccess").classList.remove("hidden")
+    document.getElementById("success").innerText = "joueur add avec success"
+    setTimeout(() => {
+        document.getElementById("modalSuccess").classList.add("hidden");
+    }, 2000);
     showAllData()
 })
 function Delete(id) {
@@ -547,17 +554,17 @@ function selectPlayer() {
     function loadchoosenPlayerData(select, container, selectId) {
         const choosenPlayer = select
         console.log(choosenPlayer)
-       
+        
         //get the player data
         const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
-        const PlayerData = container.querySelector(".data")
-        if(PlayerData){
-            PlayerData.remove()
-        }
-        const playerDataSection = document.createElement("div")
-        playerDataSection.classList.add("data")
         selectId.classList.add("absolute","top-0","left-0")
+        const playerData = container.querySelector(".data")
+        if(playerData){
+            playerData.remove()
+        }
+        const PlayerDataSection = document.createElement("div")
+        PlayerDataSection.classList.add("data")
         const positionSection = document.createElement("div")
         positionSection.classList.add("flex", "flex-col", "h-5", "mr-3")
 
@@ -570,17 +577,17 @@ function selectPlayer() {
         position.classList.add("text-[9px]", "flex", "mr-10", "font-bold")
         position.innerText = data.position
         positionSection.append(position)
-        playerDataSection.append(positionSection)
+        PlayerDataSection.append(positionSection)
 
         const profile = document.createElement("img")
         profile.src = data.photo
         profile.classList.add("flex", "justify-center", "w-8", "h-8")
-        playerDataSection.append(profile)
+        PlayerDataSection.append(profile)
 
         const Name = document.createElement("p")
         Name.classList.add("text-xs", "text-center", "font-bold")
         Name.innerText = name[0]
-        playerDataSection.append(Name)
+        PlayerDataSection.append(Name)
 
         const flagSection = document.createElement("div")
         flagSection.classList.add("flex", "justify-center", "items-center", "gap-1", "mb-1")
@@ -594,7 +601,7 @@ function selectPlayer() {
         TeamLogo.classList.add("w-2", "h-2")
         TeamLogo.src = data.logo
         flagSection.append(TeamLogo)
-        playerDataSection.append(flagSection)
+        PlayerDataSection.append(flagSection)
 
         const statuSection = document.createElement("div")
         statuSection.classList.add("flex", "gap-[2px]", "mb-3")
@@ -614,21 +621,21 @@ function selectPlayer() {
             return statuSection
         }
         if (data.position !== "gk") {
-            playerDataSection.append(createStats("Pac", data.pacing))
-            playerDataSection.append(createStats("Sho", data.shooting))
-            playerDataSection.append(createStats("Pas", data.passing))
-            playerDataSection.append(createStats("Dri", data.driblbling))
-            playerDataSection.append(createStats("Def", data.defending))
-            playerDataSection.append(createStats("Phy", data.physical))
+            PlayerDataSection.append(createStats("Pac", data.pacing))
+            PlayerDataSection.append(createStats("Sho", data.shooting))
+            PlayerDataSection.append(createStats("Pas", data.passing))
+            PlayerDataSection.append(createStats("Dri", data.driblbling))
+            PlayerDataSection.append(createStats("Def", data.defending))
+            PlayerDataSection.append(createStats("Phy", data.physical))
         }
         if (data.position == "gk") {
-            playerDataSection.append(createStats("Dvin", data.Dvin))
-            playerDataSection.append(createStats("Hand", data.Hind))
-            playerDataSection.append(createStats("Kick", data.Kick))
-            playerDataSection.append(createStats("Sp", data.Sp))
-            playerDataSection.append(createStats("Def", data.pos))
+            PlayerDataSection.append(createStats("Dvin", data.Dvin))
+            PlayerDataSection.append(createStats("Hand", data.Hind))
+            PlayerDataSection.append(createStats("Kick", data.Kick))
+            PlayerDataSection.append(createStats("Sp", data.Sp))
+            PlayerDataSection.append(createStats("Def", data.pos))
         }
-        container.append(playerDataSection)
+        container.append(PlayerDataSection)
     }
     lwPlayer.addEventListener("change", () => {
         loadchoosenPlayerData(lwPlayer.value, lw, lwPlayer)
@@ -666,14 +673,4 @@ function selectPlayer() {
     showSelectedPlayers()
 }
 selectPlayer()
-function showSelectedPlayers(){
-    const data = JSON.parse(localStorage.getItem("playerSelected"))
-    const allSelected = Object.values(data).every(value => value !== "");
 
-    if (allSelected) {
-        console.log("All positions are filled.");
-    } else {
-        console.log("Some positions are missing players.");
-    }
-}
-document.addEventListener("DOMContentLoaded", showAllData)
