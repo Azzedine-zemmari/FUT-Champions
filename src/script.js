@@ -7,7 +7,9 @@ menu.addEventListener("click", () => {
 const insert = document.getElementById("insert")
 const form = document.getElementById("form")
 insert.addEventListener("click", () => {
+    modifSubmit.classList.add("hidden")
     form.classList.toggle("hidden")
+
     // insert.addEventListener("mouseleave",()=>{
     //     form.classList.add("hidden")
     // })
@@ -27,6 +29,7 @@ const PlayerName = document.getElementById("name"),
     Playerdefending = document.getElementById("defending"),
     Playerphysical = document.getElementById("physical"),
     Playersubmit = document.getElementById("submit"),
+    modifSubmit = document.getElementById("SubmitModif")
     // Ratt = document.getElementById("Ratt"),
     Pac = document.getElementById("Pac"),
     Shot = document.getElementById("Shot"),
@@ -317,7 +320,7 @@ function validation(name, photo, position, nationality, flag, club, logo, rating
 
 
 function AddPlayer() {
-
+    modifSubmit.classList.add("hidden")
     const playerData = {
         id: id,
         name: PlayerName.value,
@@ -361,7 +364,7 @@ function AddPlayer() {
             alert("validation failed")
             return
         }
-        // i need to add validation for goal keeper fields
+        // i need to add validation for goal keeper
     arr.push(playerData)
     saveData()
     id++
@@ -381,6 +384,8 @@ function Delete(id) {
 }
 function modifier(id) {
     form.classList.toggle("hidden")
+    Playersubmit.classList.add("hidden")
+    modifSubmit.classList.remove("hidden")
     emptyErrorMessage()
 
     const data = arr
@@ -409,7 +414,7 @@ function modifier(id) {
         document.getElementById("pos").value = item.pos || "";
     }
     //to get the new changes in the inputs
-    Playersubmit.addEventListener("click", (e) => {
+    modifSubmit.addEventListener("click", (e) => {
         e.preventDefault()
         item.name = PlayerName.value
         item.photo = Playerphoto.value;
@@ -434,6 +439,7 @@ function modifier(id) {
             item.Sp = document.getElementById("Sp").value || "";
             item.pos = document.getElementById("pos").value || "";
         }
+        
         saveData()
         showAllData()
     })
@@ -532,13 +538,26 @@ function selectPlayer() {
             createSelect(player.id, player.name, gkPlayer)
         }
     })
+    /**
+     * 
+     * @param {value de selected option} select 
+     * @param {c est la card qui contain le selecteur} container 
+     * @param {c est le selecteur } selectId 
+     */
     function loadchoosenPlayerData(select, container, selectId) {
         const choosenPlayer = select
         console.log(choosenPlayer)
+       
         //get the player data
         const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
-        selectId.classList.add("hidden")
+        const PlayerData = container.querySelector(".data")
+        if(PlayerData){
+            PlayerData.remove()
+        }
+        const playerDataSection = document.createElement("div")
+        playerDataSection.classList.add("data")
+        selectId.classList.add("absolute","top-0","left-0")
         const positionSection = document.createElement("div")
         positionSection.classList.add("flex", "flex-col", "h-5", "mr-3")
 
@@ -551,17 +570,17 @@ function selectPlayer() {
         position.classList.add("text-[9px]", "flex", "mr-10", "font-bold")
         position.innerText = data.position
         positionSection.append(position)
-        container.append(positionSection)
+        playerDataSection.append(positionSection)
 
         const profile = document.createElement("img")
         profile.src = data.photo
         profile.classList.add("flex", "justify-center", "w-8", "h-8")
-        container.append(profile)
+        playerDataSection.append(profile)
 
         const Name = document.createElement("p")
         Name.classList.add("text-xs", "text-center", "font-bold")
         Name.innerText = name[0]
-        container.append(Name)
+        playerDataSection.append(Name)
 
         const flagSection = document.createElement("div")
         flagSection.classList.add("flex", "justify-center", "items-center", "gap-1", "mb-1")
@@ -575,7 +594,7 @@ function selectPlayer() {
         TeamLogo.classList.add("w-2", "h-2")
         TeamLogo.src = data.logo
         flagSection.append(TeamLogo)
-        container.append(flagSection)
+        playerDataSection.append(flagSection)
 
         const statuSection = document.createElement("div")
         statuSection.classList.add("flex", "gap-[2px]", "mb-3")
@@ -595,20 +614,21 @@ function selectPlayer() {
             return statuSection
         }
         if (data.position !== "gk") {
-            container.append(createStats("Pac", data.pacing))
-            container.append(createStats("Sho", data.shooting))
-            container.append(createStats("Pas", data.passing))
-            container.append(createStats("Dri", data.driblbling))
-            container.append(createStats("Def", data.defending))
-            container.append(createStats("Phy", data.physical))
+            playerDataSection.append(createStats("Pac", data.pacing))
+            playerDataSection.append(createStats("Sho", data.shooting))
+            playerDataSection.append(createStats("Pas", data.passing))
+            playerDataSection.append(createStats("Dri", data.driblbling))
+            playerDataSection.append(createStats("Def", data.defending))
+            playerDataSection.append(createStats("Phy", data.physical))
         }
         if (data.position == "gk") {
-            container.append(createStats("Dvin", data.Dvin))
-            container.append(createStats("Hand", data.Hind))
-            container.append(createStats("Kick", data.Kick))
-            container.append(createStats("Sp", data.Sp))
-            container.append(createStats("Def", data.pos))
+            playerDataSection.append(createStats("Dvin", data.Dvin))
+            playerDataSection.append(createStats("Hand", data.Hind))
+            playerDataSection.append(createStats("Kick", data.Kick))
+            playerDataSection.append(createStats("Sp", data.Sp))
+            playerDataSection.append(createStats("Def", data.pos))
         }
+        container.append(playerDataSection)
     }
     lwPlayer.addEventListener("change", () => {
         loadchoosenPlayerData(lwPlayer.value, lw, lwPlayer)
@@ -635,7 +655,7 @@ function selectPlayer() {
         loadchoosenPlayerData(cb1Player.value, cb1, cb1Player)
     })
     cb2Player.addEventListener("change", () => {
-        loadchoosenPlayerData(cb2Player, cb2, cb2Player)
+        loadchoosenPlayerData(cb2Player.value, cb2, cb2Player)
     })
     rbPlayer.addEventListener("change", () => {
         loadchoosenPlayerData(rbPlayer.value, rb, rbPlayer)
@@ -643,7 +663,17 @@ function selectPlayer() {
     gkPlayer.addEventListener("change", () => {
         loadchoosenPlayerData(gkPlayer.value, gk, gkPlayer)
     })
+    showSelectedPlayers()
 }
 selectPlayer()
+function showSelectedPlayers(){
+    const data = JSON.parse(localStorage.getItem("playerSelected"))
+    const allSelected = Object.values(data).every(value => value !== "");
 
+    if (allSelected) {
+        console.log("All positions are filled.");
+    } else {
+        console.log("Some positions are missing players.");
+    }
+}
 document.addEventListener("DOMContentLoaded", showAllData)
