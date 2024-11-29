@@ -6,6 +6,7 @@ menu.addEventListener("click", () => {
     phoneNav.classList.add("flex")
 })
 const insert = document.getElementById("insert")
+const PhoneSubmit = document.getElementById("insertPhone")
 const form = document.getElementById("form")
 insert.addEventListener("click", () => {
     modifSubmit.classList.add("hidden")
@@ -14,6 +15,10 @@ insert.addEventListener("click", () => {
     // insert.addEventListener("mouseleave",()=>{
     //     form.classList.add("hidden")
     // })
+})
+PhoneSubmit.addEventListener("click",()=>{
+    modifSubmit.classList.add("hidden")
+    form.classList.toggle("hidden")
 })
 const PlayerName = document.getElementById("name"),
     Playerphoto = document.getElementById("photo"),
@@ -181,19 +186,19 @@ function saveData() {
     }
 
 function validation(name, photo, position, nationality, flag, club, logo, rating, pacing, shooting, passing, dribbling, defend, physical) {
+    // emptyErrorMessage()
     let isValid = true;
-    emptyErrorMessage()
-   
-    if (name === "") {
-        nameError.innerText = "Veuillez entrer un nom";
+    const nameRegex = /^[a-zA-Z\s]{5,}$/
+    if (name === "" || !nameRegex.test(name)) {
+        nameError.innerText = "Ventrer un nom";
         isValid = false;
     } else {
         nameError.innerText = ""; 
     }
 
-   
-    if (photo === "") {
-        photoError.innerText = "Veuillez entrer une photo";
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    if (photo === "" || !urlRegex.test(photo)) {
+        photoError.innerText = "Ventrer une photo";
         isValid = false;
     } else {
         photoError.innerText = ""; 
@@ -201,116 +206,95 @@ function validation(name, photo, position, nationality, flag, club, logo, rating
 
     
     if (position === "") {
-        positionError.innerText = "Veuillez choisir une position";
+        positionError.innerText = "Vchoisir une position";
         isValid = false;
     } else {
         positionError.innerText = ""; 
     }
 
-    
-    if (nationality === "") {
-        nationalityError.innerText = "Veuillez entrer la nationalité";
+    const nationalityRegex = /^[a-zA-Z\s]{3,}$/
+    if (nationality === "" || !nationalityRegex.test(nationality)) {
+        nationalityError.innerText = "Ventrer la nationalité";
         isValid = false;
     } else {
         nationalityError.innerText = ""; 
     }
 
     
-    if (flag === "") {
-        flagError.innerText = "Veuillez entrer un drapeau";
+    if (flag === "" || !urlRegex.test(flag)) {
+        flagError.innerText = "Ventrer un drapeau";
         isValid = false;
     } else {
         flagError.innerText = ""; 
     }
 
-   
-    if (club === "") {
-        clubError.innerText = "Veuillez entrer un club";
+     const clubRegex = /^[a-zA-Z\s]{4,}$/
+    if (club === "" || !clubRegex.test(club)) {
+        clubError.innerText = "entrer un club";
         isValid = false;
     } else {
         clubError.innerText = ""; 
     }
 
 
-    if (logo === "") {
-        logoError.innerText = "Veuillez entrer un logo";
+    if (logo === "" || !urlRegex.test(logo)) {
+        logoError.innerText = "entrer un logo";
         isValid = false;
     } else {
         logoError.innerText = ""; 
     }
 
-    if (rating === "") {
-        ratingError.innerText = "Veuillez entrer une note";
+    if (rating === "" || isNaN(rating) || rating < 0 || rating > 100) {
+        ratingError.innerText = "entrer une note";
         isValid = false;
     } 
-    else if(rating < 0 || rating > 100){
-        ratingError.innerText = "Veuillez entrer une note entre 0 et 100"
-        isValid = false
-    }
     else {
         ratingError.innerText = ""; 
     }
 
 
-    if (pacing === "") {
-        pacingError.innerText = "Veuillez entrer un nombre valide pour la vitesse";
+    if (pacing === "" || isNaN(pacing) || pacing < 0 || pacing > 100) {
+        pacingError.innerText = "entrer un nombre valide";
         isValid = false;
     } 
-    else if(pacing < 0 || pacing > 100){
-        pacingError.innerText = "Veuillez entrer un nombre entre 0 et 100";
-        isValid = false;
-    }
     else {
         pacingError.innerText = ""; 
     }
 
 
-    if (shooting === "") {
-        shootingError.innerText = "Veuillez entrer un nombre valide pour le tir";
+    if (shooting === "" || isNaN(shooting) || shooting < 0 || shooting > 100) {
+        shootingError.innerText = "entrer un nombre valide";
         isValid = false;
     } 
-    else if(shooting < 0 || shooting > 100){
-        shootingError.innerText = "Veuillez entrer un nombre entre 0 et 100";
-        isValid = false;
-    }
     else {
         shootingError.innerText = ""; 
     }
 
-
-    if (passing === "") {
-        passingError.innerText = "Veuillez entrer un nombre valide pour la passe";
-        isValid = false;
+    if (passing === "" || isNaN(passing) || passing < 0 || passing > 100 ) {
+        passingError.innerText = "entrer un nombre valide"
     } 
-    else if(passing < 0 || passing > 100){
-        passingError.innerText = "Veuillez entrer un nombre entre 0 et 100";
-        isValid = false;
-    }
+
     else {
         passingError.innerText = ""; 
     }
 
-    if (dribbling === "") {
-        dribblingError.innerText = "Veuillez entrer un nombre valide pour le dribble";
+    if (dribbling === "" || isNaN(dribbling) || dribbling < 0 || dribbling > 100) {
+        dribblingError.innerText = "entrer un nombre valide";
         isValid = false;
     } 
-    else if(dribbling < 0 || dribbling > 100){
-        dribblingError.innerText = "Veuillez entrer un nombre entre 0 et 100";
-        isValid = false;
-    }
     else {
         dribblingError.innerText = ""; 
     }
 
-    if (defend === "" && defend < 0 && defend >= 100) {
-        defendError.innerText = "Veuillez entrer un nombre valide pour la défense";
+    if (defend === "" || isNaN(defend) || defend < 0 || defend > 100) {
+        defendError.innerText = "entrer un nombre valide";
         isValid = false;
     } else {
         defendError.innerText = ""; 
     }
 
-    if (physical === "" && physical < 0 && physical >= 100) {
-        physicalError.innerText = "Veuillez entrer un nombre valide pour le physique";
+    if (physical === "" || isNaN(physical) || physical < 0 || physical > 100) {
+        physicalError.innerText = "entrer un nombre valide";
         isValid = false;
     } else {
         physicalError.innerText = ""; 
@@ -363,35 +347,56 @@ function AddPlayer() {
         playerData.physical)
         if(!isValid){
             alert("validation failed")
-            return
+            return false
         }
         // i need to add validation for goal keeper
     arr.push(playerData)
     saveData()
     id++
+    return true
 }
 Playersubmit.addEventListener("click", (e) => {
     e.preventDefault()
-    AddPlayer()
-    form.classList.toggle("hidden")
-    document.getElementById("modalSuccess").classList.remove("hidden")
-    document.getElementById("success").innerText = "joueur add avec success"
-    setTimeout(() => {
-        document.getElementById("modalSuccess").classList.add("hidden");
-    }, 2000);
-    showAllData()
+    const isValid = AddPlayer()
+    if(isValid){
+        form.classList.toggle("hidden")
+    
+        document.getElementById("modalSuccess").classList.remove("hidden")
+        document.getElementById("success").innerText = "joueur add avec success"
+    
+        window.scrollTo(0, 0); // Scroll to top of the page
+    
+        setTimeout(() => {
+            document.getElementById("modalSuccess").classList.add("hidden");
+        }, 2000);
+        showAllData()
+    }
+    else{
+        console.log("error")
+    }
 })
+
 function Delete(id) {
     const result = arr.findIndex(obj => obj.id == id)
     console.log("this is the deleted card", result)
     arr.splice(result, 1)
 
     saveData()
+    window.scrollTo(0, 0);
+    document.getElementById("modalSuccess").classList.remove("hidden")
+    document.getElementById("success").innerText = "joueur supprimer avec success"
+    document.getElementById("modalSuccess").classList.remove("border-green-400")
+    document.getElementById("modalSuccess").classList.add("border-red-600")
+    
+    setTimeout(() => {
+        document.getElementById("modalSuccess").classList.add("hidden");
+    }, 2000);
     showAllData()
 }
 function modifier(id) {
     form.classList.toggle("hidden")
     Playersubmit.classList.add("hidden")
+    window.scrollTo(0, 0);
     modifSubmit.classList.remove("hidden")
     emptyErrorMessage()
 
@@ -448,6 +453,15 @@ function modifier(id) {
         }
         
         saveData()
+        form.classList.toggle("hidden")
+
+        document.getElementById("modalSuccess").classList.remove("hidden")
+        document.getElementById("success").innerText = "joueur modifier avec success"
+
+
+        setTimeout(() => {
+            document.getElementById("modalSuccess").classList.add("hidden");
+        }, 2000);
         showAllData()
     })
 }
@@ -460,7 +474,7 @@ function showAllData() {
             const div = document.createElement("div")
             div.innerHTML = `
             <img class="w-16 h-16" src="${element.photo}"/>
-            <div class="">
+            <div class="w-40">
             <h2 class="text-white text-bold">${element.name}</h2>
             <p class="text-[#55CCA2]">${element.position}</p>
             </div>
@@ -558,7 +572,7 @@ function selectPlayer() {
         //get the player data
         const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
-        selectId.classList.add("absolute","top-0","left-0")
+        selectId.classList.add("absolute","-top-5","left-5" ,"md:top-0","md:left-0")
         const playerData = container.querySelector(".data")
         if(playerData){
             playerData.remove()
@@ -566,31 +580,31 @@ function selectPlayer() {
         const PlayerDataSection = document.createElement("div")
         PlayerDataSection.classList.add("data")
         const positionSection = document.createElement("div")
-        positionSection.classList.add("flex", "flex-col", "h-5", "mr-3")
+        positionSection.classList.add("flex", "flex-col", "h-10", "mr-3","justify-end" ,"md:h-4")
 
         const pacing = document.createElement("p")
-        pacing.classList.add("text-[12px]", "flex", "mr-10", "font-bold")
+        pacing.classList.add("text-[8px]", "flex", "mr-10", "font-bold","md:text[12px]")
         pacing.innerText = data.pacing
         positionSection.append(pacing)
 
         const position = document.createElement("p")
-        position.classList.add("text-[9px]", "flex", "mr-10", "font-bold")
+        position.classList.add("text-[7px]", "flex", "mr-10", "font-bold")
         position.innerText = data.position
         positionSection.append(position)
         PlayerDataSection.append(positionSection)
 
         const profile = document.createElement("img")
         profile.src = data.photo
-        profile.classList.add("flex", "justify-center", "w-8", "h-8")
+        profile.classList.add("flex", "justify-center","items-center","mx-5" ,"w-4", "h-4","md:w-8", "md:h-8","md:mx-3")
         PlayerDataSection.append(profile)
 
         const Name = document.createElement("p")
-        Name.classList.add("text-xs", "text-center", "font-bold")
+        Name.classList.add("text-xs", "text-center", "mr-4","md:font-bold","-mt-1","md:mb-0",)
         Name.innerText = name[0]
         PlayerDataSection.append(Name)
 
         const flagSection = document.createElement("div")
-        flagSection.classList.add("flex", "justify-center", "items-center", "gap-1", "mb-1")
+        flagSection.classList.add("flex", "justify-center", "items-center", "gap-1","mr-5","md:mr-0")
 
         const flag = document.createElement("img")
         flag.classList.add("w-2", "h-2")

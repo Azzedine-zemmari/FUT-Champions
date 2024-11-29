@@ -22,14 +22,15 @@
         <a href="./index.html" class="font-primary text-textColor ">Home</a>
         <a href="#" class="font-primary text-textColor">About</a>
         <a href="#" class="font-primary text-textColor pb-2">Contact</a>
+        <button id="insertPhone" class="bg-[#55CCA2] px-4 py-2">insert</button>
     </div>
 </header>
-<main class="flex relative md:justify-center  md:gap-20">
-<div id="soccer" class="bg-[url('./image/timothy-tan-PAe2UhGo-S4-unsplash.jpg')]  bg-contain   mx-auto bg-no-repeat md:bg-cover h-screen md:w-[450px]">
-    <div id="attack" class="grid grid-rows-1 grid-cols-3 gap-24 h-32 place-items-center md:h-72">
-        <div class="flex flex-col justify-center items-center ml-6 md:ml-3 mt-4">
+<main class="flex relative md:justify-center  md:gap-20 flex-wrap">
+<div id="soccer" class="bg-[url('./image/timothy-tan-PAe2UhGo-S4-unsplash.jpg')]  bg-contain   mx-auto w-[80%] bg-no-repeat md:bg-contain lg:bg-cover h-full mb-5 md:w-[450px]">
+    <div id="attack" class="grid grid-rows-1 grid-cols-3 gap-24 h-36 place-items-center md:h-72">
+        <div class="flex flex-col justify-center items-center ml-6 md:ml-3 mt-4 ">
             <!-- card -->
-            <div id="lw" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center ">
+            <div id="lw" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20 h-[110px] md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center ">
                 <select class="w-5 " name="" id="lwPlayer">
                     <option value="" disabled selected>Select a player</option>
                 </select>
@@ -37,7 +38,7 @@
         </div>
         <div class="flex flex-col justify-center mb-2  md:mb-5">
             <!-- card -->
-            <div id="st" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
+            <div id="st" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20 h-[110px] md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
                 <select class="w-5 " name="" id="stPlayer">
                     <option value="" disabled selected>Select a player</option>
                 </select>
@@ -45,17 +46,17 @@
         </div>
         <div class="flex flex-col justify-center mr-10 md:mr-3 mt-4">
             <!-- card -->
-            <div id="rw" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
+            <div id="rw" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20 h-[110px] md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
                 <select class="w-5 " name="" id="rwPlayer">
                     <option value="" disabled selected>Select a player</option>
                 </select>
             </div>
         </div>
     </div>
-    <div id="center" class="grid grid-rows-1 grid-cols-3 gap-24 place-items-center h-40 md:h-72">
+    <div id="center" class="grid grid-rows-1 grid-cols-3 gap-24 place-items-center h-48 md:h-72">
         <div  class="flex flex-col justify-center mb-7 ml-5 md:ml-0">
             <!-- card -->
-            <div id="cml" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
+            <div id="cml" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20 h-[110px] md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
                 <select class="w-5 " name="" id="cmlPlayer">
                     <option value="" disabled selected>Select a player</option>
                 </select>
@@ -63,7 +64,7 @@
         </div>
         <div  class="flex flex-col justify-center ml-3 ">
             <!-- card -->
-            <div id="cm" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
+            <div id="cm" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20 h-[110px] mt-16 md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
                 <select class="w-5 " name="" id="cmPlayer">
                     <option value="" disabled selected>Select a player</option>
                 </select>
@@ -71,18 +72,18 @@
         </div>
         <div class="flex flex-col justify-center  mr-10 mb-7 md:mr-0">
             <!-- card -->
-            <div id="cmr" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
+            <div id="cmr" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20 h-[110px] md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
                 <select class="w-5 " name="" id="cmrPlayer">
                     <option value="" disabled selected>Select a player</option>
                 </select>
             </div>        
         </div>
     </div>
-    <div id="defence" class="grid grid-rows-1 grid-cols-2 gap-5 h-48 place-items-center">
+    <div id="defence" class="grid grid-rows-1 grid-cols-2 gap-5 h-32 place-items-center">
         <div id="left" class="flex gap-0">
             <div  class="flex flex-col justify-center mb-5 ml-2 md:ml-0">
                 <!-- card -->
-                <div id="lb" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
+                <div id="lb" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20 h-[110px] md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
                     <select class="w-5 " name="" id="lbPlayer">
                         <option value="" disabled selected>Select a player</option>
                     </select>
@@ -90,7 +91,7 @@
             </div>
             <div class="flex flex-col justify-center ">
                 <!-- card -->
-                <div id="cb1" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[90px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
+                <div id="cb1" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20 h-[110px] md:w-[90px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
                     <select class="w-5 " name="" id="cb1Player">
                         <option value="" disabled selected>Select a player</option>
                     </select>
@@ -100,7 +101,7 @@
         <div id="right" class="flex gap-0">
             <div class="flex flex-col justify-center ">
                 <!-- card -->
-                <div id="cb2" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[90px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
+                <div id="cb2" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20 h-[110px] md:w-[90px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
                     <select class="w-5" name="" id="cb2Player">
                         <option value="" disabled selected>Select a player</option>
                     </select>
@@ -108,7 +109,7 @@
             </div>
             <div class="flex flex-col justify-center  mr-5 mb-5 md:mr-0 ">
                 <!-- card -->
-                <div id="rb" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
+                <div id="rb" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20 h-[110px] md:w-[100px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
                     <select class="w-5" name="" id="rbPlayer">
                         <option value="" disabled selected>Select a player</option>
                     </select>
@@ -116,10 +117,10 @@
             </div>
         </div>
     </div>
-    <div id="goalKeeper" class="flex justify-center items-end h-14">
+    <div id="goalKeeper" class="flex justify-center items-end h-20">
         <div class="flex flex-col justify-center mr-3 md:mr-0">
             <!-- card -->
-            <div id="gk" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-10 h-10 md:w-[90px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center">
+            <div id="gk" class="bg-[url('./image/badge_gold.webp')] relative bg-contain w-20  h-[110px] md:w-[90px] md:h-[150px] bg-no-repeat flex flex-col justify-center items-center lg:h-[]">
                 <select class="w-5" name="" id="gkPlayer">
                     <option value="" disabled selected>Select a player</option>
                 </select>
@@ -230,7 +231,7 @@
     </form>
 </div>
 <aside id="larg">
-    <div class="bg-black w-60 h-auto">
+    <div class="bg-black w-60 h-[400px]  overflow-y-auto">
         <h2 class="text-white text-center">All Players</h2>
         <div id="Playerscontainer" class="flex flex-col gap-4"></div>
     </div>
