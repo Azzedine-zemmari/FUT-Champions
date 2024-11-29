@@ -59,7 +59,7 @@ function customizeForm(option) {
         Def.classList.add("hidden")
         Phy.classList.add("hidden")
 
-        // Remove the the goalkeeper fields if they exist
+        // Remove hidden class from the goalkeeper fields if they exist
         if (document.getElementById("Dvin")) {
             document.getElementById("Dvin").classList.remove("hidden");
         }
@@ -80,7 +80,7 @@ function customizeForm(option) {
         }
 
         //add the field for the goal keeper
-        function createStat(DivId, label) {
+        function createStat(DivId, label,DivError) {
             const diving = document.createElement("div")
             diving.id = DivId
             diving.classList.add("flex", "flex-col")
@@ -93,26 +93,29 @@ function customizeForm(option) {
             input.type = "number"
             input.id = label
             diving.append(input)
+            const errorParagraph = document.createElement("p")
+            errorParagraph.id = DivError
+            diving.append(errorParagraph)
             return diving
         }
 
         if (!document.getElementById("Dvin")) {
-            Section1.append(createStat("diving", "Dvin"))
+            Section1.append(createStat("diving", "Dvin","DvinError"))
         }
         if (!document.getElementById("Hand")) {
-            Section1.append(createStat("handling", "Hand"))
+            Section1.append(createStat("handling", "Hand","HandError"))
         }
         if (!document.getElementById("Kick")) {
-            Section1.append(createStat("kicking", "Kick"))
+            Section1.append(createStat("kicking", "Kick","KickError"))
         }
         if (!document.getElementById("ref")) {
-            Section2.append(createStat("reflexes", "ref"))
+            Section2.append(createStat("reflexes", "ref","RefError"))
         }
         if (!document.getElementById("Sp")) {
-            Section2.append(createStat("speed", "Sp"))
+            Section2.append(createStat("speed", "Sp","SpError"))
         }
         if (!document.getElementById("pos")) {
-            Section2.append(createStat("positioning", "pos"))
+            Section2.append(createStat("positioning", "pos","PosError"))
         }
 
     }
@@ -304,35 +307,47 @@ function validation(name, photo, position, nationality, flag, club, logo, rating
 }
 
 function validationGK(Dvin,Hind,Kick,ref,Sp,pos){
+    const DvinError = document.getElementById("DvinError")
+    const handlingError = document.getElementById("HandError")
+    const kickingError = document.getElementById("KickError")
+    const RefError = document.getElementById("RefError")
+    const SpError = document.getElementById("SpError")
+    const PosError = document.getElementById("PosError")
     let valid = true 
     if (Dvin === "" || isNaN(Dvin) || Dvin < 0 || Dvin > 100) {
-        alert("entre un nombre valid")
+        DvinError.innerText = "dvin invalid"
+        DvinError.classList.add("text-red-600")
         valid = false;
     } 
 
 
     if (Hind === "" || isNaN(Hind) || Hind < 0 || Hind > 100) {
-        alert("entrer un nombre valide");
+        handlingError.innerText = "hind invalid"
+        handlingError.classList.add("text-white-600")
         valid = false;
     } 
 
     if (Kick === "" || isNaN(Kick) || Kick < 0 || Kick > 100 ) {
-        alert("entrer un nombre valide")
+        kickingError.innerText = "Kick invalid"
+        kickingError.classList.add("text-red-600")
         valid = false
     } 
 
 
     if (ref === "" || isNaN(ref) || ref < 0 || ref > 100) {
-        alert("entrer un nombre valide");
+        RefError.innerText = "ref invalid"
+        RefError.classList.add("text-red-600")
         valid = false;
     } 
 
     if (Sp === "" || isNaN(Sp) || Sp < 0 || Sp > 100) {
-        alert("entrer un nombre valide");
+        SpError.innerText = "sp invalid"
+        SpError.classList.add("text-red-600")
         valid = false;
     }
     if (pos === "" || isNaN(pos) || pos < 0 || pos > 100) {
-        alert("entrer un nombre valide");
+        PosError.innerText = "pos invalid"
+        PosError.classList.add("text-red-600")
         valid = false;
     } 
     return valid

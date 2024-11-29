@@ -622,22 +622,6 @@ video {
   top: 0px;
 }
 
-.-top-4 {
-  top: -1rem;
-}
-
-.-top-3 {
-  top: -0.75rem;
-}
-
-.-top-2 {
-  top: -0.5rem;
-}
-
-.-top-1 {
-  top: -0.25rem;
-}
-
 .z-50 {
   z-index: 50;
 }
@@ -772,32 +756,12 @@ video {
   height: 400px;
 }
 
-.h-full {
-  height: 100%;
-}
-
-.h-screen {
-  height: 100vh;
-}
-
 .h-auto {
   height: auto;
 }
 
-.h-\[120px\] {
-  height: 120px;
-}
-
-.h-\[140px\] {
-  height: 140px;
-}
-
-.h-\[10px\] {
-  height: 10px;
-}
-
-.h-\[115px\] {
-  height: 115px;
+.h-full {
+  height: 100%;
 }
 
 .w-16 {
@@ -976,8 +940,8 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.bg-\[url\(\'\.\/image\/badge_gold\.webp\'\)\] {
-  background-image: url('./image/badge_gold.webp');
+.bg-\[url\(\'\.\/image\/badge\.webp\'\)\] {
+  background-image: url('./image/badge.webp');
 }
 
 .bg-\[url\(\'\.\/image\/pngtree-icc-cricket-world-match-background-image_13943187\.jpg\'\)\] {
@@ -986,10 +950,6 @@ video {
 
 .bg-\[url\(\'\.\/image\/timothy-tan-PAe2UhGo-S4-unsplash\.jpg\'\)\] {
   background-image: url('./image/timothy-tan-PAe2UhGo-S4-unsplash.jpg');
-}
-
-.bg-\[url\(\'\.\/image\/badge\.webp\'\)\] {
-  background-image: url('./image/badge.webp');
 }
 
 .bg-contain {
@@ -1077,6 +1037,11 @@ video {
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
+
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
 }
 
 .text-textColor {
