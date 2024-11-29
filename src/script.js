@@ -188,7 +188,6 @@ function saveData() {
 function validation(name, photo, position, nationality, flag, club, logo, rating, pacing, shooting, passing, dribbling, defend, physical) {
     // emptyErrorMessage()
     let isValid = true;
-    let errorMessages = [];
     const nameRegex = /^[a-zA-Z\s]{5,}$/
     if (name === "" || !nameRegex.test(name)) {
         nameError.innerText = "Ventrer un nom";
@@ -303,40 +302,7 @@ function validation(name, photo, position, nationality, flag, club, logo, rating
 
     return isValid; // Return the form is valid or not
 }
-function validationGk(Dvin,Hind,Kick,ref,Sp,pos){
-    let errors = []
-    let validation = true
-    if (Dvin === "" || isNaN(Dvin) || Dvin < 0 || Dvin > 100) {
-        errors.push("Dvin is invalid");
-        validation = false;
-    } 
 
-
-    if (Hind === "" || isNaN(Hind) || Hind < 0 || Hind > 100) {
-        errors.push("Hind is invalid")
-        validation = false;
-    } 
-
-    if (Kick === "" || isNaN(Kick) || Kick < 0 || Kick > 100) {
-        errors.push("entrer un nombre valide");
-        validation = false;
-    } 
-
-    if (ref === "" || isNaN(ref) || ref < 0 || ref > 100 ) {
-        errors.push("entrer un ref valid")
-        validation = false
-    } 
-    if (Sp === "" || isNaN(Sp) || Sp < 0 || Sp > 100 ) {
-        errors.push("entrer un ref valid")
-        validation = false
-    } 
-    if (pos === "" || isNaN(pos) || pos < 0 || pos > 100 ) {
-        errors.push("entrer un ref valid")
-        validation = false
-    } 
-    return errors , validation
-  
-}
 
 function AddPlayer() {
     modifSubmit.classList.add("hidden")
@@ -365,24 +331,27 @@ function AddPlayer() {
         playerData.Sp = document.getElementById("Sp") ? document.getElementById("Sp").value : null
         playerData.pos = document.getElementById("pos") ? document.getElementById("pos").value : null
     }
-    const isValid = validation( playerData.name,
-        playerData.photo,
-        playerData.position,
-        playerData.nationnality,
-        playerData.flag,
-        playerData.club,
-        playerData.logo,
-        playerData.rating,
-        playerData.pacing,
-        playerData.shooting,
-        playerData.passing,
-        playerData.driblbling,
-        playerData.defending,
-        playerData.physical)
-        if(!isValid){
-            alert("validation failed")
-            return false
-        }
+    if(Playerposition.value !=  "gk"){
+        const isValid = validation( playerData.name,
+            playerData.photo,
+            playerData.position,
+            playerData.nationnality,
+            playerData.flag,
+            playerData.club,
+            playerData.logo,
+            playerData.rating,
+            playerData.pacing,
+            playerData.shooting,
+            playerData.passing,
+            playerData.driblbling,
+            playerData.defending,
+            playerData.physical)
+            if(!isValid){
+                alert("validation failed")
+                return false
+            }
+    }
+    
         // i need to add validation for goal keeper
     arr.push(playerData)
     saveData()
@@ -722,4 +691,3 @@ function selectPlayer() {
 }
 selectPlayer()
 
- 
