@@ -188,6 +188,7 @@ function saveData() {
 function validation(name, photo, position, nationality, flag, club, logo, rating, pacing, shooting, passing, dribbling, defend, physical) {
     // emptyErrorMessage()
     let isValid = true;
+    let errorMessages = [];
     const nameRegex = /^[a-zA-Z\s]{5,}$/
     if (name === "" || !nameRegex.test(name)) {
         nameError.innerText = "Ventrer un nom";
@@ -302,7 +303,40 @@ function validation(name, photo, position, nationality, flag, club, logo, rating
 
     return isValid; // Return the form is valid or not
 }
+function validationGk(Dvin,Hind,Kick,ref,Sp,pos){
+    let errors = []
+    let validation = true
+    if (Dvin === "" || isNaN(Dvin) || Dvin < 0 || Dvin > 100) {
+        errors.push("Dvin is invalid");
+        validation = false;
+    } 
 
+
+    if (Hind === "" || isNaN(Hind) || Hind < 0 || Hind > 100) {
+        errors.push("Hind is invalid")
+        validation = false;
+    } 
+
+    if (Kick === "" || isNaN(Kick) || Kick < 0 || Kick > 100) {
+        errors.push("entrer un nombre valide");
+        validation = false;
+    } 
+
+    if (ref === "" || isNaN(ref) || ref < 0 || ref > 100 ) {
+        errors.push("entrer un ref valid")
+        validation = false
+    } 
+    if (Sp === "" || isNaN(Sp) || Sp < 0 || Sp > 100 ) {
+        errors.push("entrer un ref valid")
+        validation = false
+    } 
+    if (pos === "" || isNaN(pos) || pos < 0 || pos > 100 ) {
+        errors.push("entrer un ref valid")
+        validation = false
+    } 
+    return errors , validation
+  
+}
 
 function AddPlayer() {
     modifSubmit.classList.add("hidden")
@@ -583,12 +617,12 @@ function selectPlayer() {
         positionSection.classList.add("flex", "flex-col", "h-10", "mr-3","justify-end" ,"md:h-4")
 
         const pacing = document.createElement("p")
-        pacing.classList.add("text-[8px]", "flex", "mr-10", "font-bold","md:text[12px]")
+        pacing.classList.add("text-[8px]", "flex", "mr-10", "font-bold","md:text[12px]","text-white")
         pacing.innerText = data.pacing
         positionSection.append(pacing)
 
         const position = document.createElement("p")
-        position.classList.add("text-[7px]", "flex", "mr-10", "font-bold")
+        position.classList.add("text-[7px]", "flex", "mr-10", "font-bold","text-white")
         position.innerText = data.position
         positionSection.append(position)
         PlayerDataSection.append(positionSection)
@@ -599,7 +633,7 @@ function selectPlayer() {
         PlayerDataSection.append(profile)
 
         const Name = document.createElement("p")
-        Name.classList.add("text-xs", "text-center", "mr-4","md:font-bold","-mt-1","md:mb-0",)
+        Name.classList.add("text-xs", "text-center", "mr-4","md:font-bold","-mt-1","md:mb-0","text-white")
         Name.innerText = name[0]
         PlayerDataSection.append(Name)
 
@@ -624,11 +658,11 @@ function selectPlayer() {
             const div = document.createElement("div")
             div.classList.add("flex", "flex-col")
             const labelPragraph = document.createElement("p")
-            labelPragraph.classList.add("text-[6px]")
+            labelPragraph.classList.add("text-[6px]","text-white")
             labelPragraph.innerText = label
             div.append(labelPragraph)
             const statsParagraph = document.createElement("p")
-            statsParagraph.classList.add("text-[6px]")
+            statsParagraph.classList.add("text-[6px]","text-white")
             statsParagraph.innerText = value
             div.append(statsParagraph)
             statuSection.append(div)
@@ -688,3 +722,4 @@ function selectPlayer() {
 }
 selectPlayer()
 
+ 
