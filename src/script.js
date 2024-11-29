@@ -303,6 +303,40 @@ function validation(name, photo, position, nationality, flag, club, logo, rating
     return isValid; // Return the form is valid or not
 }
 
+function validationGK(Dvin,Hind,Kick,ref,Sp,pos){
+    let valid = true 
+    if (Dvin === "" || isNaN(Dvin) || Dvin < 0 || Dvin > 100) {
+        alert("entre un nombre valid")
+        valid = false;
+    } 
+
+
+    if (Hind === "" || isNaN(Hind) || Hind < 0 || Hind > 100) {
+        alert("entrer un nombre valide");
+        valid = false;
+    } 
+
+    if (Kick === "" || isNaN(Kick) || Kick < 0 || Kick > 100 ) {
+        alert("entrer un nombre valide")
+        valid = false
+    } 
+
+
+    if (ref === "" || isNaN(ref) || ref < 0 || ref > 100) {
+        alert("entrer un nombre valide");
+        valid = false;
+    } 
+
+    if (Sp === "" || isNaN(Sp) || Sp < 0 || Sp > 100) {
+        alert("entrer un nombre valide");
+        valid = false;
+    }
+    if (pos === "" || isNaN(pos) || pos < 0 || pos > 100) {
+        alert("entrer un nombre valide");
+        valid = false;
+    } 
+    return valid
+}
 
 function AddPlayer() {
     modifSubmit.classList.add("hidden")
@@ -350,6 +384,20 @@ function AddPlayer() {
                 alert("validation failed")
                 return false
             }
+    }
+    if(Playerposition.value == "gk"){
+        const valid = validationGK(
+            document.getElementById("Dvin").value,
+            document.getElementById("Hand").value,
+            document.getElementById("Kick").value,
+            document.getElementById("ref").value,
+            document.getElementById("Sp").value,
+            document.getElementById("pos").value
+        )
+        if(!valid){
+            return false
+        }
+
     }
     
         // i need to add validation for goal keeper
@@ -497,6 +545,7 @@ function showAllData() {
         });
     }
 }
+// container of select and the select tags  
 const lwPlayer = document.getElementById("lwPlayer")
 const stPlayer = document.getElementById("stPlayer")
 const rwPlayer = document.getElementById("rwPlayer")
@@ -562,6 +611,15 @@ function selectPlayer() {
             createSelect(player.id, player.name, gkPlayer)
         }
     })
+    /** remove the player from showPlayerData
+     * 
+     * @param {*} id 
+     */
+    // function removePlayer(id){
+    //    const element = arr.find(obj=>obj.id === id)
+    //    console.log("this player will be removed",element)
+    //    return element
+    // }
     /**
      * 
      * @param {value de selected option} select 
@@ -656,6 +714,7 @@ function selectPlayer() {
     }
     lwPlayer.addEventListener("change", () => {
         loadchoosenPlayerData(lwPlayer.value, lw, lwPlayer)
+        // removePlayer(lwPlayer.value)
     })
     stPlayer.addEventListener("change", () => {
         loadchoosenPlayerData(stPlayer.value, st, stPlayer)
@@ -687,7 +746,7 @@ function selectPlayer() {
     gkPlayer.addEventListener("change", () => {
         loadchoosenPlayerData(gkPlayer.value, gk, gkPlayer)
     })
-    showSelectedPlayers()
+    // showSelectedPlayers()
 }
 selectPlayer()
 
