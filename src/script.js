@@ -766,7 +766,7 @@ function selectPlayer() {
 
         const pacing = document.createElement("p")
         pacing.classList.add("text-[8px]", "flex", "mr-10", "font-bold","md:text[12px]","text-white")
-        pacing.innerText = data.pacing
+        pacing.innerText = data.rating
         positionSection.append(pacing)
 
         const position = document.createElement("p")
