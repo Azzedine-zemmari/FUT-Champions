@@ -166,7 +166,7 @@ function customizeForm(option) {
             diving.append(labelPragraph)
             const input = document.createElement("input")
             input.classList.add("w-24", "input")
-            input.type = "number"
+            input.type = "text"
             input.id = label
             diving.append(input)
             const errorParagraph = document.createElement("p")
@@ -570,6 +570,36 @@ function modifier(id) {
     //to get the new changes in the inputs
     modifSubmit.addEventListener("click", (e) => {
         e.preventDefault()
+        const isvalid = Playerposition.value == "gk" ? 
+        validationGK(
+            document.getElementById("Dvin").value,
+            document.getElementById("Hand").value,
+            document.getElementById("Kick").value,
+            document.getElementById("ref").value,
+            document.getElementById("Sp").value,
+            document.getElementById("pos").value
+        ):
+        validation(
+            PlayerName.value,
+            Playerphoto.value,
+            Playerposition.value,
+            Playernationality.value,
+            Playerflag.value,
+            Playerclub.value,
+            Playerlogo.value,
+            Playerrating.value,
+            Playerpacing.value,
+            Playershoting.value,
+            Playerpassing.value,
+            Playerdribbling.value,
+            Playerdefending.value,
+            Playerphysical.value
+        )
+        if(!isvalid){
+            alert("validation invalid");
+            return false
+        }
+
         item.name = PlayerName.value
         item.photo = Playerphoto.value;
         item.position = Playerposition.value;
