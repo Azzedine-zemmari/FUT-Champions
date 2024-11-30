@@ -777,11 +777,11 @@ function selectPlayer() {
 
         const profile = document.createElement("img")
         profile.src = data.photo
-        profile.classList.add("flex", "justify-center","items-center","mx-5" ,"w-4", "h-4","md:w-8", "md:h-8","md:mx-3")
+        profile.classList.add("flex", "justify-center","items-center","mx-5" ,"w-4", "h-4","md:w-8", "md:h-8","md:mx-5")
         PlayerDataSection.append(profile)
 
         const Name = document.createElement("p")
-        Name.classList.add("text-xs", "text-center", "mr-4","md:font-bold","-mt-1","md:mb-0","text-white")
+        Name.classList.add("text-xs", "text-center", "mr-4","md:font-bold","-mt-1","md:mb-0","text-white","md:mr-0")
         Name.innerText = name[0]
         PlayerDataSection.append(Name)
 
