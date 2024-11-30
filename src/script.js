@@ -60,23 +60,23 @@ function customizeForm(option) {
         Phy.classList.add("hidden")
 
         // Remove hidden class from the goalkeeper fields if they exist
-        if (document.getElementById("Dvin")) {
-            document.getElementById("Dvin").classList.remove("hidden");
+        if (document.getElementById("diving")) {
+            document.getElementById("diving").classList.remove("hidden");
         }
-        if (document.getElementById("Hand")) {
-            document.getElementById("Hand").classList.remove("hidden");
+        if (document.getElementById("handling")) {
+            document.getElementById("handling").classList.remove("hidden");
         }
-        if (document.getElementById("Kick")) {
-            document.getElementById("Kick").classList.remove("hidden");
+        if (document.getElementById("kicking")) {
+            document.getElementById("kicking").classList.remove("hidden");
         }
-        if (document.getElementById("ref")) {
-            document.getElementById("ref").classList.remove("hidden");
+        if (document.getElementById("reflexes")) {
+            document.getElementById("reflexes").classList.remove("hidden");
         }
-        if (document.getElementById("Sp")) {
-            document.getElementById("Sp").classList.remove("hidden");
+        if (document.getElementById("speed")) {
+            document.getElementById("speed").classList.remove("hidden");
         }
-        if (document.getElementById("pos")) {
-            document.getElementById("pos").classList.remove("hidden");
+        if (document.getElementById("positioning")) {
+            document.getElementById("positioning").classList.remove("hidden");
         }
 
         //add the field for the goal keeper
@@ -126,23 +126,23 @@ function customizeForm(option) {
         Dri.classList.remove("hidden")
         Def.classList.remove("hidden")
         Phy.classList.remove("hidden")
-        if (document.getElementById("Dvin")) {
-            document.getElementById("Dvin").classList.add("hidden")
+        if (document.getElementById("diving")) {
+            document.getElementById("diving").classList.add("hidden")
         }
-        if (document.getElementById("Hand")) {
-            document.getElementById("Hand").classList.add("hidden")
+        if (document.getElementById("handling")) {
+            document.getElementById("handling").classList.add("hidden")
         }
-        if (document.getElementById("Kick")) {
-            document.getElementById("Kick").classList.add("hidden")
+        if (document.getElementById("kicking")) {
+            document.getElementById("kicking").classList.add("hidden")
         }
-        if (document.getElementById("ref")) {
-            document.getElementById("ref").classList.add("hidden")
+        if (document.getElementById("reflexes")) {
+            document.getElementById("reflexes").classList.add("hidden")
         }
-        if (document.getElementById("Sp")) {
-            document.getElementById("Sp").classList.add("hidden")
+        if (document.getElementById("speed")) {
+            document.getElementById("speed").classList.add("hidden")
         }
-        if (document.getElementById("pos")) {
-            document.getElementById("pos").classList.add("hidden")
+        if (document.getElementById("positioning")) {
+            document.getElementById("positioning").classList.add("hidden")
         }
 
     }
@@ -231,7 +231,7 @@ function validation(name, photo, position, nationality, flag, club, logo, rating
         flagError.innerText = ""; 
     }
 
-     const clubRegex = /^[a-zA-Z\s]{4,}$/
+     const clubRegex = /^[a-zA-Z\s-]{4,}$/
     if (club === "" || !clubRegex.test(club)) {
         clubError.innerText = "entrer un club";
         isValid = false;
