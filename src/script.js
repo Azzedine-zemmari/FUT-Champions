@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", showAllData)
 const menu = document.getElementById("menu")
 const phoneNav = document.getElementById("phoneNav")
+const cancel = document.getElementById("Annuller")
 menu.addEventListener("click", () => {
     phoneNav.classList.toggle("hidden")
     phoneNav.classList.add("flex")
@@ -10,11 +11,86 @@ const PhoneSubmit = document.getElementById("insertPhone")
 const form = document.getElementById("form")
 insert.addEventListener("click", () => {
     modifSubmit.classList.add("hidden")
+    Playersubmit.classList.remove("hidden")
+    if(PlayerName.value){
+        PlayerName.value = ""
+    }
+    if(Playerphoto.value){
+        Playerphoto.value = ""
+    }
+    if(Playernationality.value){
+        Playernationality.value = ""
+    }
+    if(Playerflag.value){
+        Playerflag.value = ""
+    }
+    if(Playerclub.value){
+        Playerclub.value = ""
+    }
+    if(Playerlogo.value){
+        Playerlogo.value = ""
+    }
+    if(Playerrating.value){
+        Playerrating.value = ""
+    }
+    if (Playerpacing.value) {
+        Playerpacing.value = ""
+    }
+    if (Playershoting.value) {
+        Playershoting.value = "";
+    }
+    if (Playerpassing.value) {
+        Playerpassing.value = "";
+    }
+    if (Playerdribbling.value) {
+        Playerdribbling.value = "";  
+    }
+    if (Playerdefending.value) {
+        Playerdefending.value = "";  
+    }
+    if (Playerphysical.value) {
+        Playerphysical.value = ""; 
+    }
+    if (document.getElementById("Dvin") && document.getElementById("Dvin").value) {
+        document.getElementById("Dvin").value = "";  
+    }
+    if (document.getElementById("Hand") && document.getElementById("Hand").value) {
+        document.getElementById("Hand").value = "";  
+    }
+    if (document.getElementById("Kick") && document.getElementById("Kick").value) {
+        document.getElementById("Kick").value = "";  
+    }
+    if (document.getElementById("ref") && document.getElementById("ref").value) {
+        document.getElementById("ref").value = ""; 
+    }
+    if (document.getElementById("Sp") && document.getElementById("Sp").value) {
+        document.getElementById("Sp").value = "";
+    }
+    if (document.getElementById("pos") && document.getElementById("pos").value) {
+        document.getElementById("pos").value = ""; 
+    }
+
+    // Playershoting.value = ""
+    // Playerpassing.value = ""
+    // Playerdribbling.value = ""
+    // Playerdefending.value = ""
+    // Playerphysical.value = ""
+    // document.getElementById("Dvin").value = ""
+    // document.getElementById("Hand").value = ""
+    // document.getElementById("Kick").value = ""
+    // document.getElementById("ref").value = ""
+    // document.getElementById("Sp").value = ""
+    // document.getElementById("pos").value = ""
+
+
     form.classList.toggle("hidden")
 
     // insert.addEventListener("mouseleave",()=>{
     //     form.classList.add("hidden")
     // })
+})
+cancel.addEventListener("click",()=>{
+    form.classList.toggle("hidden")
 })
 PhoneSubmit.addEventListener("click",()=>{
     modifSubmit.classList.add("hidden")
