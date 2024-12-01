@@ -382,7 +382,7 @@ function validation(name, photo, position, nationality, flag, club, logo, rating
     return isValid; // Return the form is valid or not
 }
 
-function validationGK(Dvin,Hind,Kick,ref,Sp,pos){
+function validationGK(name, photo, position, nationality, flag, club, logo, rating,Dvin,Hind,Kick,ref,Sp,pos){
     const DvinError = document.getElementById("DvinError")
     const handlingError = document.getElementById("HandError")
     const kickingError = document.getElementById("KickError")
@@ -390,10 +390,76 @@ function validationGK(Dvin,Hind,Kick,ref,Sp,pos){
     const SpError = document.getElementById("SpError")
     const PosError = document.getElementById("PosError")
     let valid = true 
+    const nameRegex = /^[a-zA-Z\s]{5,}$/
+    if (name === "" || !nameRegex.test(name)) {
+        nameError.innerText = "Ventrer un nom";
+        valid = false;
+    } else {
+        nameError.innerText = ""; 
+    }
+
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    if (photo === "" || !urlRegex.test(photo)) {
+        photoError.innerText = "Ventrer une photo";
+        valid = false;
+    } else {
+        photoError.innerText = ""; 
+    }
+
+    
+    if (position === "") {
+        positionError.innerText = "Vchoisir une position";
+        valid = false;
+    } else {
+        positionError.innerText = ""; 
+    }
+
+    const nationalityRegex = /^[a-zA-Z\s]{3,}$/
+    if (nationality === "" || !nationalityRegex.test(nationality)) {
+        nationalityError.innerText = "Ventrer la nationalité";
+        valid = false;
+    } else {
+        nationalityError.innerText = ""; 
+    }
+
+    
+    if (flag === "" || !urlRegex.test(flag)) {
+        flagError.innerText = "Ventrer un drapeau";
+        valid = false;
+    } else {
+        flagError.innerText = ""; 
+    }
+
+     const clubRegex = /^[a-zA-Z\s-]{4,}$/
+    if (club === "" || !clubRegex.test(club)) {
+        clubError.innerText = "entrer un club";
+        valid = false;
+    } else {
+        clubError.innerText = ""; 
+    }
+
+
+    if (logo === "" || !urlRegex.test(logo)) {
+        logoError.innerText = "entrer un logo";
+        valid = false;
+    } else {
+        logoError.innerText = ""; 
+    }
+
+    if (rating === "" || isNaN(rating) || rating < 0 || rating > 100) {
+        ratingError.innerText = "entrer une note";
+        valid = false;
+    } 
+    else {
+        ratingError.innerText = ""; 
+    }
     if (Dvin === "" || isNaN(Dvin) || Dvin < 0 || Dvin > 100) {
         DvinError.innerText = "dvin invalid"
         DvinError.classList.add("text-red-600")
         valid = false;
+    }
+    else{
+        DvinError.innerText = ""
     } 
 
 
@@ -401,12 +467,18 @@ function validationGK(Dvin,Hind,Kick,ref,Sp,pos){
         handlingError.innerText = "hind invalid"
         handlingError.classList.add("text-white-600")
         valid = false;
+    }
+    else{
+        handlingError.innerText = ""
     } 
 
     if (Kick === "" || isNaN(Kick) || Kick < 0 || Kick > 100 ) {
         kickingError.innerText = "Kick invalid"
         kickingError.classList.add("text-red-600")
         valid = false
+    }
+    else{
+        kickingError.innerText = ""
     } 
 
 
@@ -414,6 +486,9 @@ function validationGK(Dvin,Hind,Kick,ref,Sp,pos){
         RefError.innerText = "ref invalid"
         RefError.classList.add("text-red-600")
         valid = false;
+    }
+    else{
+        RefError.innerText = ""
     } 
 
     if (Sp === "" || isNaN(Sp) || Sp < 0 || Sp > 100) {
@@ -421,10 +496,16 @@ function validationGK(Dvin,Hind,Kick,ref,Sp,pos){
         SpError.classList.add("text-red-600")
         valid = false;
     }
+    else{
+        SpError.innerText = ""
+    }
     if (pos === "" || isNaN(pos) || pos < 0 || pos > 100) {
         PosError.innerText = "pos invalid"
         PosError.classList.add("text-red-600")
         valid = false;
+    }
+    else{
+        PosError.innerText = ""
     } 
     return valid
 }
@@ -478,6 +559,14 @@ function AddPlayer() {
     }
     if(Playerposition.value == "gk"){
         const valid = validationGK(
+            playerData.name,
+            playerData.photo,
+            playerData.position,
+            playerData.nationnality,
+            playerData.flag,
+            playerData.club,
+            playerData.logo,
+            playerData.rating,
             document.getElementById("Dvin").value,
             document.getElementById("Hand").value,
             document.getElementById("Kick").value,
@@ -486,6 +575,7 @@ function AddPlayer() {
             document.getElementById("pos").value
         )
         if(!valid){
+            alert("validation failed")
             return false
         }
 
@@ -572,6 +662,14 @@ function modifier(id) {
         e.preventDefault()
         const isvalid = Playerposition.value == "gk" ? 
         validationGK(
+            PlayerName.value,
+            Playerphoto.value,
+            Playerposition.value,
+            Playernationality.value,
+            Playerflag.value,
+            Playerclub.value,
+            Playerlogo.value,
+            Playerrating.value,
             document.getElementById("Dvin").value,
             document.getElementById("Hand").value,
             document.getElementById("Kick").value,
