@@ -1095,11 +1095,6 @@ video {
     top: 0px;
   }
 
-  .md\:mx-3 {
-    margin-left: 0.75rem;
-    margin-right: 0.75rem;
-  }
-
   .md\:mx-5 {
     margin-left: 1.25rem;
     margin-right: 1.25rem;
@@ -1141,8 +1136,8 @@ video {
     display: none;
   }
 
-  .md\:h-4 {
-    height: 1rem;
+  .md\:h-3 {
+    height: 0.75rem;
   }
 
   .md\:h-72 {
@@ -1155,6 +1150,18 @@ video {
 
   .md\:h-\[150px\] {
     height: 150px;
+  }
+
+  .md\:h-5 {
+    height: 1.25rem;
+  }
+
+  .md\:h-6 {
+    height: 1.5rem;
+  }
+
+  .md\:h-4 {
+    height: 1rem;
   }
 
   .md\:w-8 {
