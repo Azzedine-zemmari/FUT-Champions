@@ -247,22 +247,22 @@ function saveData() {
     const dribblingError = document.getElementById("dribblingError");
     const defendError = document.getElementById("defendError");
     const physicalError = document.getElementById("physicalError");
-    function emptyErrorMessage(){
-        nameError.innerHTML = "";
-    photoError.innerHTML = "";
-    positionError.innerHTML = "";
-    nationalityError.innerHTML = "";
-    flagError.innerHTML = "";
-    clubError.innerHTML = "";
-    logoError.innerHTML = "";
-    ratingError.innerHTML = "";
-    pacingError.innerHTML = "";
-    shootingError.innerHTML = "";
-    passingError.innerHTML = "";
-    dribblingError.innerHTML = "";
-    defendError.innerHTML = "";
-    physicalError.innerHTML = "";
-    }
+    // function emptyErrorMessage(){
+    //     nameError.innerHTML = "";
+    // photoError.innerHTML = "";
+    // positionError.innerHTML = "";
+    // nationalityError.innerHTML = "";
+    // flagError.innerHTML = "";
+    // clubError.innerHTML = "";
+    // logoError.innerHTML = "";
+    // ratingError.innerHTML = "";
+    // pacingError.innerHTML = "";
+    // shootingError.innerHTML = "";
+    // passingError.innerHTML = "";
+    // dribblingError.innerHTML = "";
+    // defendError.innerHTML = "";
+    // physicalError.innerHTML = "";
+    // }
 
 function validation(name, photo, position, nationality, flag, club, logo, rating, pacing, shooting, passing, dribbling, defend, physical) {
     // emptyErrorMessage()
@@ -630,7 +630,7 @@ function modifier(id) {
     Playersubmit.classList.add("hidden")
     window.scrollTo(0, 0);
     modifSubmit.classList.remove("hidden")
-    emptyErrorMessage()
+    // emptyErrorMessage()
 
     const data = arr
     const item = data.find(obj => obj.id == id)
@@ -830,15 +830,7 @@ function selectPlayer() {
             createSelect(player.id, player.name, gkPlayer)
         }
     })
-    /** remove the player from showPlayerData
-     * 
-     * @param {*} id 
-     */
-    // function removePlayer(id){
-    //    const element = arr.find(obj=>obj.id === id)
-    //    console.log("this player will be removed",element)
-    //    return element
-    // }
+
     /**
      * 
      * @param {value de selected option} select 
@@ -933,7 +925,6 @@ function selectPlayer() {
     }
     lwPlayer.addEventListener("change", () => {
         loadchoosenPlayerData(lwPlayer.value, lw, lwPlayer)
-        // removePlayer(lwPlayer.value)
     })
     stPlayer.addEventListener("change", () => {
         loadchoosenPlayerData(stPlayer.value, st, stPlayer)
@@ -965,7 +956,6 @@ function selectPlayer() {
     gkPlayer.addEventListener("change", () => {
         loadchoosenPlayerData(gkPlayer.value, gk, gkPlayer)
     })
-    // showSelectedPlayers()
 }
 selectPlayer()
 
