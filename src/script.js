@@ -844,10 +844,10 @@ function selectPlayer() {
         const data = arr.find(obj => obj.id == choosenPlayer)
         const name = data.name.split(" ")
         selectId.classList.add("absolute","-top-5","left-5" ,"md:top-0","md:left-0")
-        const playerData = container.querySelector(".data")
-        if(playerData){
-            playerData.remove()
-        }
+        // const playerData = container.querySelector(".data")
+        // if(playerData){
+        //     playerData.remove()
+        // }
         const PlayerDataSection = document.createElement("div")
         PlayerDataSection.classList.add("data")
         const positionSection = document.createElement("div")
