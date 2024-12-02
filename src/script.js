@@ -398,7 +398,7 @@ function validationGK(name, photo, position, nationality, flag, club, logo, rati
         nameError.innerText = ""; 
     }
 
-    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    const urlRegex = /^(https?):\/\/[^\s/$.?#].[^\s]*$/i;
     if (photo === "" || !urlRegex.test(photo)) {
         photoError.innerText = "Ventrer une photo";
         valid = false;
